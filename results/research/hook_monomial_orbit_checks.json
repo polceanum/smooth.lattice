@@ -1,0 +1,2603 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_monomial_orbit_checks.py",
+  "scope": "Actual component bound for all compatible hooks, and a full-fan/common-list monomial-orbit class theorem. No unrestricted exponent, polynomial lower separation or exact novelty claimed.",
+  "uniform_result": {
+    "component_bound": "O(n^2*(1+min(sigma_Y,sigma_Z)/t)^2)",
+    "monomial_orbit_bound": "O(n^2*beta^2)",
+    "beta": "min(ceil(t/delta),1+nu/delta,ceil(A/nu),A/t), or 1 if nu=0",
+    "common_integer_weights": "O(n^2*beta^2), height O(a^2)",
+    "binomial_family_ranks": "b=t^2, chi_Y=chi_Z=floor(t^2/4), rho=(A-1)*(t-1)",
+    "mixed_direction_obstruction": "W=(1+qv)^(t-1)+lambda*q^2*v, lambda!=0, A>=2t+2, char 0 or p>2t: chi_Y,chi_Z>=floor(t^2/4), sigma_Y,sigma_Z>=A-t-1, b=t^2, rho=(A-1)*(t-1)"
+  },
+  "counts": {
+    "independent_actual_support_graph_partitions": 38,
+    "independent_binomial_interface_block_minors": 36,
+    "independent_chain_band_and_refined_beta_bounds": 14,
+    "independent_common_sampler_full_fan_equalities": 2,
+    "independent_complete_common_arrangements": 1,
+    "independent_entire_original_vs_component_core_patches": 349,
+    "independent_integer_sampler_chambers": 1413,
+    "independent_large_departure_comparisons": 74,
+    "independent_mixed_direction_combined_integer_minors": 8,
+    "independent_mixed_direction_departure_comparisons": 24,
+    "independent_mixed_direction_shared_support_steps": 64,
+    "independent_pure_column_orbit_support_checks": 1490
+  },
+  "fan_counts": {
+    "independent_complete_original_fans": 2
+  },
+  "original_quotient_replay_counts": {
+    "exact_potential_bridge_partitions": 23,
+    "independent_original_quotient_column_equalities": 5748,
+    "independent_commuting_matrix_columns": 13716,
+    "independent_module_successor_columns": 28542,
+    "independent_original_carrier_model_equalities": 5
+  },
+  "orbit_cases": [
+    {
+      "t": 3,
+      "a": 12,
+      "nu": 3,
+      "delta": 2,
+      "coefficients": [
+        1,
+        1
+      ],
+      "characteristic": 2,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 11,
+      "uniform_planes": 547,
+      "patches": [
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/169"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/80"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/64"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/3552"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/4590"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "43/10010"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "117/137632"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/19656"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "1/2112"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "7/660"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "19/2100"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "11/95760"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "31/5040"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 39,
+          "core_columns": 103,
+          "patch_area2": "119/6084"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 4,
+      "a": 16,
+      "nu": 4,
+      "delta": 3,
+      "coefficients": [
+        0,
+        1
+      ],
+      "characteristic": 101,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 15,
+      "uniform_planes": 1013,
+      "patches": [
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "31/3600"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/576"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "17/576"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/3668"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/12768"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/504"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "107/54720"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/168"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/188100"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/220"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/13608"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "1/17388"
+        },
+        {
+          "omitted_rank": 28,
+          "core_rank": 68,
+          "core_columns": 180,
+          "patch_area2": "73/48400"
+        },
+        {
+          "omitted_rank": 44,
+          "core_rank": 52,
+          "core_columns": 164,
+          "patch_area2": "1/390"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 4,
+      "a": 16,
+      "nu": 1,
+      "delta": 1,
+      "coefficients": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "characteristic": 3,
+      "arm": 1,
+      "beta": "2",
+      "cross_arm_long_differences": 14,
+      "uniform_planes": 993,
+      "patches": [
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/576"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "31/3600"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "17/576"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/4704"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/8274"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/1900"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "7/42636"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/5544"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/2520"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/4960"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "7/11232"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "13/2736"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "1/12090"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 183,
+          "patch_area2": "2/945"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "nu": 0,
+      "delta": 1,
+      "coefficients": [
+        0,
+        1,
+        2
+      ],
+      "characteristic": 0,
+      "arm": 0,
+      "beta": "1",
+      "cross_arm_long_differences": 8,
+      "uniform_planes": 343,
+      "patches": [
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "59/2940"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/60"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/60"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/52"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/1210"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/2198"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/126"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "29/99000"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/700"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/693"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/60"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 30,
+          "core_columns": 81,
+          "patch_area2": "1/1386"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 27,
+          "core_columns": 78,
+          "patch_area2": "1/216"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 5,
+      "a": 17,
+      "nu": 7,
+      "delta": 1,
+      "coefficients": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "characteristic": 2,
+      "arm": 1,
+      "beta": "2",
+      "cross_arm_long_differences": 21,
+      "uniform_planes": 1277,
+      "patches": [
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/169"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "149/14400"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/84"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/106"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/10488"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/10296"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/480"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/224"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/10920"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "13/379260"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "131/556920"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/416"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "31/111384"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "1/390"
+        },
+        {
+          "omitted_rank": 15,
+          "core_rank": 105,
+          "core_columns": 263,
+          "patch_area2": "97/2256800"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 7,
+      "a": 22,
+      "nu": 6,
+      "delta": 4,
+      "coefficients": [
+        1,
+        1
+      ],
+      "characteristic": 3,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 26,
+      "uniform_planes": 2055,
+      "patches": [
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "247/27900"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "2/435"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/132"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/16038"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/18210"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "41/126672"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "7/74400"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "14/152685"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/1190"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/12180"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "19/3885"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "1/14322"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "65/475272"
+        },
+        {
+          "omitted_rank": 38,
+          "core_rank": 172,
+          "core_columns": 444,
+          "patch_area2": "37/601020"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 3,
+      "a": 9,
+      "nu": 20,
+      "delta": 1,
+      "coefficients": [
+        1,
+        1,
+        1
+      ],
+      "characteristic": 2,
+      "arm": 1,
+      "beta": "1",
+      "cross_arm_long_differences": 8,
+      "uniform_planes": 284,
+      "patches": [
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "2/91"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "17/624"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/50"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/1044"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/1140"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "5/3192"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/1152"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/2160"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "29/19380"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/4158"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "17/3960"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "7/2080"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/240"
+        },
+        {
+          "omitted_rank": 9,
+          "core_rank": 27,
+          "core_columns": 69,
+          "patch_area2": "1/336"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 3,
+      "a": 6,
+      "nu": 2,
+      "delta": 1,
+      "coefficients": [
+        0,
+        1,
+        1
+      ],
+      "characteristic": 3,
+      "arm": 0,
+      "beta": "1",
+      "cross_arm_long_differences": 5,
+      "uniform_planes": 124,
+      "patches": [
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "49/792"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "1/14"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "1/12"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "5/28"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "2/99"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "5/28"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "17/180"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "17/180"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "11/630"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "7/351"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "5/28"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 18,
+          "core_columns": 44,
+          "patch_area2": "5/432"
+        },
+        {
+          "omitted_rank": 7,
+          "core_rank": 11,
+          "core_columns": 37,
+          "patch_area2": "23/660"
+        }
+      ],
+      "large_parameter_controls": null
+    },
+    {
+      "t": 2,
+      "a": 7,
+      "nu": 1,
+      "delta": 1,
+      "coefficients": [
+        1,
+        1
+      ],
+      "characteristic": 5,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 6,
+      "uniform_planes": 164,
+      "patches": [
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/50"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/16"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/42"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/16"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/132"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/120"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/1620"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/72"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/728"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/336"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/195"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/396"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/1792"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/300"
+        },
+        {
+          "omitted_rank": 5,
+          "core_rank": 15,
+          "core_columns": 26,
+          "patch_area2": "1/192"
+        }
+      ],
+      "large_parameter_controls": {
+        "bridge_rank": 4,
+        "tail_interface_ranks": [
+          1,
+          1
+        ],
+        "least_departure_proved": 4
+      }
+    },
+    {
+      "t": 3,
+      "a": 11,
+      "nu": 1,
+      "delta": 1,
+      "coefficients": [
+        1,
+        2,
+        1
+      ],
+      "characteristic": 0,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 10,
+      "uniform_planes": 451,
+      "patches": [
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "3/256"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/70"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/26"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/480"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/560"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/216"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/16335"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "11/2052"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "37/3432"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/54"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/5200"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/720"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/26"
+        },
+        {
+          "omitted_rank": 12,
+          "core_rank": 36,
+          "core_columns": 63,
+          "patch_area2": "1/154"
+        }
+      ],
+      "large_parameter_controls": {
+        "bridge_rank": 9,
+        "tail_interface_ranks": [
+          2,
+          2
+        ],
+        "least_departure_proved": 14
+      }
+    },
+    {
+      "t": 4,
+      "a": 16,
+      "nu": 1,
+      "delta": 1,
+      "coefficients": [
+        1,
+        3,
+        3,
+        1
+      ],
+      "characteristic": 101,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 14,
+      "uniform_planes": 993,
+      "patches": [
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/144"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/64"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/1312"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/1824"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/1368"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "33/69160"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/46800"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "11/1440"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/4004"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/16170"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/120"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "27/21280"
+        },
+        {
+          "omitted_rank": 26,
+          "core_rank": 70,
+          "core_columns": 124,
+          "patch_area2": "1/112"
+        }
+      ],
+      "large_parameter_controls": {
+        "bridge_rank": 16,
+        "tail_interface_ranks": [
+          4,
+          4
+        ],
+        "least_departure_proved": 33
+      }
+    },
+    {
+      "t": 6,
+      "a": 22,
+      "nu": 1,
+      "delta": 1,
+      "coefficients": [
+        1,
+        5,
+        10,
+        10,
+        5,
+        1
+      ],
+      "characteristic": 101,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 22,
+      "uniform_planes": 2008,
+      "patches": [
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "3/512"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/144"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/144"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/56"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/3792"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/5312"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/12250"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "19/251550"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "83/2692800"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/255136"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/20150"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/116440"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/6072"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "1/13020"
+        },
+        {
+          "omitted_rank": 45,
+          "core_rank": 147,
+          "core_columns": 258,
+          "patch_area2": "41/114840"
+        }
+      ],
+      "large_parameter_controls": {
+        "bridge_rank": 36,
+        "tail_interface_ranks": [
+          9,
+          9
+        ],
+        "least_departure_proved": 75
+      }
+    },
+    {
+      "t": 8,
+      "a": 28,
+      "nu": 1,
+      "delta": 1,
+      "coefficients": [
+        1,
+        7,
+        21,
+        35,
+        35,
+        21,
+        7,
+        1
+      ],
+      "characteristic": 101,
+      "arm": 0,
+      "beta": "2",
+      "cross_arm_long_differences": 30,
+      "uniform_planes": 3359,
+      "patches": [
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/200"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/256"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/180"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/76"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/8256"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/11520"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "31/57600"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/1710"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/6264"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "13/83160"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/5280"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/1900"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/5320"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "1/200"
+        },
+        {
+          "omitted_rank": 68,
+          "core_rank": 252,
+          "core_columns": 440,
+          "patch_area2": "77/92460"
+        }
+      ],
+      "large_parameter_controls": {
+        "bridge_rank": 64,
+        "tail_interface_ranks": [
+          16,
+          16
+        ],
+        "least_departure_proved": 133
+      }
+    }
+  ],
+  "mixed_direction_controls": [
+    {
+      "t": 2,
+      "a": 10,
+      "parameter": 1,
+      "characteristic": 5,
+      "bridge_rank": 4,
+      "tail_interface_ranks": [
+        2,
+        2
+      ],
+      "long_difference_spreads": [
+        11,
+        11
+      ],
+      "combined_integer_determinants": [
+        "1",
+        "1"
+      ],
+      "unchanged_minor_product": "1",
+      "least_departure_proved": 7,
+      "patches": [
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/128"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "9/160"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/72"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/18"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/240"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/288"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/105"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "25/22464"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/30"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "11/288"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "25/22464"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/5096"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "19/560"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/1632"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "9/160"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/128"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/18"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/72"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/288"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/240"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/1088"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/320"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "19/560"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/18"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/48"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "23/9180"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/320"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 31,
+          "core_columns": 58,
+          "patch_area2": "1/1176"
+        }
+      ]
+    },
+    {
+      "t": 3,
+      "a": 14,
+      "parameter": -1,
+      "characteristic": 0,
+      "bridge_rank": 9,
+      "tail_interface_ranks": [
+        4,
+        4
+      ],
+      "long_difference_spreads": [
+        16,
+        16
+      ],
+      "combined_integer_determinants": [
+        "2",
+        "2"
+      ],
+      "unchanged_minor_product": "2",
+      "least_departure_proved": 20,
+      "patches": [
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "3/484"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/100"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/26"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/714"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/2002"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "5/756"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/26"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "17/1800"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "7/720"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/468"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/180"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "11/900"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/528"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "3/484"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/26"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/100"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/2002"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/714"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/26460"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/1452"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "101/7920"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "9/1820"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/15660"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "15/2464"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 65,
+          "core_columns": 121,
+          "patch_area2": "1/54"
+        }
+      ]
+    },
+    {
+      "t": 4,
+      "a": 20,
+      "parameter": 2,
+      "characteristic": 101,
+      "bridge_rank": 16,
+      "tail_interface_ranks": [
+        6,
+        6
+      ],
+      "long_difference_spreads": [
+        23,
+        23
+      ],
+      "combined_integer_determinants": [
+        "18",
+        "18"
+      ],
+      "unchanged_minor_product": "18",
+      "least_departure_proved": 45,
+      "patches": [
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/256"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/64"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/148"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/1856"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/7296"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "3/3520"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/3570"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/36540"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/1368"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "73/561150"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/60588"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/672"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/156"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/64"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/256"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/148"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/7296"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/1856"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/544"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/6426"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "9/256360"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "93/52360"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/918"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "6/3289"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/612"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 127,
+          "core_columns": 238,
+          "patch_area2": "1/1440"
+        }
+      ]
+    },
+    {
+      "t": 6,
+      "a": 26,
+      "parameter": 1,
+      "characteristic": 101,
+      "bridge_rank": 36,
+      "tail_interface_ranks": [
+        11,
+        11
+      ],
+      "long_difference_spreads": [
+        31,
+        31
+      ],
+      "combined_integer_determinants": [
+        "656250",
+        "656250"
+      ],
+      "unchanged_minor_product": "656250",
+      "least_departure_proved": 95,
+      "patches": [
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "3/800"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/144"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/184"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/56"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/4992"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/17840"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/42966"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "21/12100"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/5328"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/585"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "31/53352"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "27/263900"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "47/303600"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "11/227240"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/144"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "3/800"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/56"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/184"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/17840"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/4992"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/22680"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/13608"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/30888"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/648"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/800"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "47/38104560"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "53/1410864"
+        },
+        {
+          "omitted_rank": 1,
+          "core_rank": 239,
+          "core_columns": 442,
+          "patch_area2": "1/7440"
+        }
+      ]
+    }
+  ],
+  "general_outer_map_controls": [
+    {
+      "t": 2,
+      "a": 5,
+      "characteristic": 101,
+      "sigma": 9,
+      "patches": [
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/30"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/22"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "9/112"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/108"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/120"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "13/252"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/360"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "5/168"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/22"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "7/1320"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/48"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/36"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 12,
+          "core_columns": 31,
+          "patch_area2": "1/80"
+        }
+      ]
+    },
+    {
+      "t": 3,
+      "a": 8,
+      "characteristic": 2,
+      "sigma": 14,
+      "patches": [
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/56"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/100"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "13/264"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/40"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/230"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/459"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/420"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/6696"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "13/756"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/84"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "13/1680"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/84"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "5/336"
+        },
+        {
+          "omitted_rank": 2,
+          "core_rank": 28,
+          "core_columns": 70,
+          "patch_area2": "1/84"
+        }
+      ]
+    },
+    {
+      "t": 3,
+      "a": 7,
+      "characteristic": 0,
+      "sigma": 13,
+      "patches": [
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/64"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/56"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/30"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "13/264"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/266"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/344"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "31/4998"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/480"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "13/264"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "1/504"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "23/4560"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "29/17820"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "23/2520"
+        },
+        {
+          "omitted_rank": 0,
+          "core_rank": 24,
+          "core_columns": 63,
+          "patch_area2": "3/704"
+        }
+      ]
+    }
+  ],
+  "common_sampler": [
+    {
+      "coefficients": [
+        1,
+        1
+      ],
+      "complete_original_fan_cones": 51,
+      "weights_reused": 1413
+    },
+    {
+      "coefficients": [
+        0,
+        1
+      ],
+      "complete_original_fan_cones": 37,
+      "weights_reused": 1413
+    }
+  ],
+  "limits": [
+    "Chosen-arm outer components vanish in the polynomial-orbit class; the opposite arm is arbitrary.",
+    "The general support-component bound itself allows every compatible outer map.",
+    "Several independent monomial steps can join the chains and are not covered by the orbit bound.",
+    "Exact priority, sharpness and the unrestricted goal remain unresolved."
+  ],
+  "source_sha256": {
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/hook_monomial_orbits.md": "9cad33417938b69d1c2399b359cdefd9b85cd25faa44a101379bfb6fcdfea0ac",
+    "docs/hook_rank_departure.md": "e90371abbbf50c3ad13547c710de4c0022d2d9ed8762de3109c0fa519b83f1b8",
+    "docs/hook_tail_interface.md": "5493d30075dba53cf8354a5daedce30afbe707a34d8b8ad16e9ad2b7ab155dde",
+    "results/research/hook_tail_interface_checks.json": "dca6c4248bca109e914bacf50c16542270bfa4e0c96db4157d37d4e6574c1599",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_central_prefix_checks.py": "26377696a5b4443f15045e16a91125239dd934baf1d1d5f1400dbe9cb0f09cc8",
+    "scripts/run_hook_filtered_annihilator_checks.py": "9ebfcc35b27f75c586a7165282f076f763f20e5eaeeb8c9943a5f251d0347b76",
+    "scripts/run_hook_high_price_partner_checks.py": "e08140cf5c6caf12eda55c2f3d7116851f826e8d78352cde8fb2a261fa0abd31",
+    "scripts/run_hook_monomial_orbit_checks.py": "73d2df85c7b57f274924dafe7e10cad3ac93c91379797f551f5b545d48741b60",
+    "scripts/run_hook_monomial_perturbation_checks.py": "17577d12548240faac5d6de08f743e5624d08930ab0f0ae64f9a25bb9c968632",
+    "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
+    "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
