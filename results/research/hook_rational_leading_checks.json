@@ -1,0 +1,2759 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_rational_leading_checks.py",
+  "scope": "All-field compact rational leading-coordinate theorem for both central arms. Unit numerators allow arbitrary compatible outer images; nonunit numerators require matching outer images in the central multiplication image. Scalar rational unit one-arm corollary permits an arbitrary opposite arm. No unrestricted endpoint or exact novelty claimed.",
+  "uniform_result": {
+    "hypotheses": "P,Q have nonzero constants, total degrees p,r<A and nonzero pure q^p,q^r coefficients",
+    "two_arm_full_fan": "O(a^2*(t+d)^2)=O(n^2*(1+d/t)^2)",
+    "heavy_endpoint_strip": "M<=3t+d or |M-a|<=3t+d, except the rational price plane",
+    "price_plane": "lambda=t+(r-p)*u",
+    "common_integer_weights": "O(a^2*(t+d0)^2), height O(a^2)",
+    "scalar_one_arm": "O(n^2*(1+d/t+log(a/t))^2), arbitrary compatible opposite and outer images",
+    "nonunit_extension": "The same quadratic bound holds with Q unit and matching outer components f0Y=W_Y*B_Y, f2Z=W_Z*B_Z on each nonunit arm; cross outer components remain arbitrary.",
+    "geometric_family": "W=1+v/(1-q) has compact degree 1 and expanded forward/inverse degrees A-1; both such arms give a quadratic full fan"
+  },
+  "counts": {
+    "coefficient_independent_compact_rational_plane_inventories": 5,
+    "complete_original_rational_wall_plane_checks": 3600,
+    "independent_actual_compact_rational_coherent_exchanges": 865,
+    "independent_actual_rational_outer_exchange_checks": 25,
+    "independent_compact_rational_common_list_equalities": 3,
+    "independent_entire_open_price_region_fan_patches": 52,
+    "independent_entire_prefix_leading_coordinate_certificates": 189,
+    "independent_long_geometric_forward_inverse_controls": 11,
+    "independent_nonunit_original_outer_image_factorizations": 196,
+    "independent_original_central_denominator_clearing_identities": 1162,
+    "independent_original_label_filtered_loop_identities": 282,
+    "independent_original_prefix_coloop_rank_equalities": 32,
+    "independent_rational_price_plane_exchange_exceptions": 0,
+    "independent_truncated_rational_operator_equalities": 32,
+    "independent_whole_normal_cone_denominator_chart_equalities": 64,
+    "nonunit_arms_with_matching_outer_image_condition": 9
+  },
+  "fan_counts": {
+    "independent_complete_original_fans": 7
+  },
+  "original_quotient_replay_counts": {
+    "exact_potential_bridge_partitions": 18,
+    "independent_original_quotient_column_equalities": 3750,
+    "independent_commuting_matrix_columns": 8250,
+    "independent_module_successor_columns": 16875,
+    "independent_original_carrier_model_equalities": 4
+  },
+  "cases": [
+    {
+      "t": 3,
+      "a": 40,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 36,
+          "expanded_inverse_degree": 36,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 253
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                22,
+                2
+              ],
+              "prefix_columns": 273
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 259
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                22,
+                2
+              ],
+              "prefix_columns": 279
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 313
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                22,
+                2
+              ],
+              "prefix_columns": 332
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 325
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                22,
+                2
+              ],
+              "prefix_columns": 343
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 433
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                22,
+                2
+              ],
+              "prefix_columns": 436
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 433
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                22,
+                2
+              ],
+              "prefix_columns": 437
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 99,
+              "patch_area2": "1936/20475"
+            },
+            {
+              "above": true,
+              "deleted_columns": 99,
+              "patch_area2": "1/390"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 36,
+          "expanded_inverse_degree": 36,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                22
+              ],
+              "prefix_columns": 253
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                22
+              ],
+              "prefix_columns": 273
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                22
+              ],
+              "prefix_columns": 259
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                22
+              ],
+              "prefix_columns": 279
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                22
+              ],
+              "prefix_columns": 313
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                22
+              ],
+              "prefix_columns": 332
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                22
+              ],
+              "prefix_columns": 325
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                22
+              ],
+              "prefix_columns": 343
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                22
+              ],
+              "prefix_columns": 433
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                22
+              ],
+              "prefix_columns": 436
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                22
+              ],
+              "prefix_columns": 433
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                22
+              ],
+              "prefix_columns": 437
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 99,
+              "patch_area2": "1936/20475"
+            },
+            {
+              "above": true,
+              "deleted_columns": 99,
+              "patch_area2": "1/390"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 20,
+      "characteristic": 2,
+      "zero_outer_images": true,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 16,
+          "expanded_inverse_degree": 16,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 103
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 124
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 109
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 132
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 133
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 152
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 163
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 193
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 196
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 193
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 197
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 39,
+              "patch_area2": "27/100"
+            },
+            {
+              "above": true,
+              "deleted_columns": 39,
+              "patch_area2": "5152/220077"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 16,
+          "expanded_inverse_degree": 16,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 103
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 124
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 109
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 132
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 133
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 152
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 163
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 193
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 196
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 193
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 197
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 39,
+              "patch_area2": "27/100"
+            },
+            {
+              "above": true,
+              "deleted_columns": 39,
+              "patch_area2": "5152/220077"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 4,
+      "a": 30,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 2,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 25,
+          "expanded_inverse_degree": 25,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "5/4",
+              "target_row": [
+                18,
+                0
+              ],
+              "prefix_columns": 218
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "5/4",
+              "target_row": [
+                18,
+                3
+              ],
+              "prefix_columns": 258
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "17/6",
+              "target_row": [
+                19,
+                0
+              ],
+              "prefix_columns": 244
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "17/6",
+              "target_row": [
+                19,
+                3
+              ],
+              "prefix_columns": 289
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "1",
+              "target_row": [
+                18,
+                0
+              ],
+              "prefix_columns": 281
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "1",
+              "target_row": [
+                18,
+                3
+              ],
+              "prefix_columns": 317
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "7/3",
+              "target_row": [
+                19,
+                0
+              ],
+              "prefix_columns": 313
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "7/3",
+              "target_row": [
+                19,
+                3
+              ],
+              "prefix_columns": 344
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                19,
+                0
+              ],
+              "prefix_columns": 405
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                19,
+                3
+              ],
+              "prefix_columns": 410
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 84,
+              "patch_area2": "13/175"
+            },
+            {
+              "above": true,
+              "deleted_columns": 80,
+              "patch_area2": "53/18522"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 2,
+          "expanded_forward_degree": 25,
+          "expanded_inverse_degree": 25,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "11/4",
+              "target_row": [
+                0,
+                19
+              ],
+              "prefix_columns": 228
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "11/4",
+              "target_row": [
+                3,
+                19
+              ],
+              "prefix_columns": 270
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "35/6",
+              "target_row": [
+                0,
+                18
+              ],
+              "prefix_columns": 224
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "35/6",
+              "target_row": [
+                3,
+                18
+              ],
+              "prefix_columns": 269
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3",
+              "target_row": [
+                0,
+                19
+              ],
+              "prefix_columns": 301
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3",
+              "target_row": [
+                3,
+                19
+              ],
+              "prefix_columns": 334
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "19/3",
+              "target_row": [
+                0,
+                18
+              ],
+              "prefix_columns": 299
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "19/3",
+              "target_row": [
+                3,
+                18
+              ],
+              "prefix_columns": 335
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "9/2",
+              "target_row": [
+                0,
+                19
+              ],
+              "prefix_columns": 402
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "9/2",
+              "target_row": [
+                3,
+                19
+              ],
+              "prefix_columns": 408
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "28/3",
+              "target_row": [
+                0,
+                18
+              ],
+              "prefix_columns": 397
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "28/3",
+              "target_row": [
+                3,
+                18
+              ],
+              "prefix_columns": 403
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 80,
+              "patch_area2": "1853/52668"
+            },
+            {
+              "above": true,
+              "deleted_columns": 84,
+              "patch_area2": "25/172431"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 18,
+      "characteristic": 3,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 3,
+          "denominator_degree": 2,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": 14,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/4",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 84
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/4",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 104
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "11/6",
+              "target_row": [
+                13,
+                0
+              ],
+              "prefix_columns": 102
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "11/6",
+              "target_row": [
+                13,
+                2
+              ],
+              "prefix_columns": 124
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "1/2",
+              "target_row": [
+                12,
+                0
+              ],
+              "prefix_columns": 108
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "1/2",
+              "target_row": [
+                12,
+                2
+              ],
+              "prefix_columns": 126
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "4/3",
+              "target_row": [
+                13,
+                0
+              ],
+              "prefix_columns": 132
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "4/3",
+              "target_row": [
+                13,
+                2
+              ],
+              "prefix_columns": 148
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                13,
+                0
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                13,
+                2
+              ],
+              "prefix_columns": 174
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 30,
+              "patch_area2": "1753/30240"
+            },
+            {
+              "above": true,
+              "deleted_columns": 27,
+              "patch_area2": "14527/580720"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": 14,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 89
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 110
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 94
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 117
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 115
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 134
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 127
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 173
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "14011/143220"
+            },
+            {
+              "above": true,
+              "deleted_columns": 33,
+              "patch_area2": "2725/588672"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 12,
+      "characteristic": 0,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 2,
+          "expanded_forward_degree": 8,
+          "expanded_inverse_degree": 8,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 12,
+              "patch_area2": "1/1170"
+            },
+            {
+              "above": true,
+              "deleted_columns": 15,
+              "patch_area2": "19/54000"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 8,
+          "expanded_inverse_degree": 8,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                8
+              ],
+              "prefix_columns": 45
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                8
+              ],
+              "prefix_columns": 66
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                8
+              ],
+              "prefix_columns": 52
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                8
+              ],
+              "prefix_columns": 76
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                8
+              ],
+              "prefix_columns": 61
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                8
+              ],
+              "prefix_columns": 80
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                8
+              ],
+              "prefix_columns": 73
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                8
+              ],
+              "prefix_columns": 91
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                8
+              ],
+              "prefix_columns": 97
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                8
+              ],
+              "prefix_columns": 100
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                8
+              ],
+              "prefix_columns": 97
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                8
+              ],
+              "prefix_columns": 101
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 15,
+              "patch_area2": "339/47804"
+            },
+            {
+              "above": true,
+              "deleted_columns": 15,
+              "patch_area2": "1237/1578720"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 6,
+      "characteristic": 2,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 2,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 2,
+          "expanded_inverse_degree": 2,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 0,
+              "patch_area2": "4/385"
+            },
+            {
+              "above": true,
+              "deleted_columns": 0,
+              "patch_area2": "31/10260"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 2,
+          "expanded_inverse_degree": 2,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 0,
+              "patch_area2": "5/864"
+            },
+            {
+              "above": true,
+              "deleted_columns": 0,
+              "patch_area2": "359/168168"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 2,
+      "a": 8,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 5,
+          "expanded_inverse_degree": 5,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 6,
+              "patch_area2": "86/2457"
+            },
+            {
+              "above": true,
+              "deleted_columns": 6,
+              "patch_area2": "17/4620"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 5,
+          "expanded_inverse_degree": 5,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 6,
+              "patch_area2": "86/2457"
+            },
+            {
+              "above": true,
+              "deleted_columns": 6,
+              "patch_area2": "17/4620"
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 214,
+        "coherent_exchange_checks": 192,
+        "price_plane_exceptions": 0,
+        "outer_exchange_checks": 0,
+        "common_planes": 323
+      }
+    },
+    {
+      "t": 3,
+      "a": 8,
+      "characteristic": 2,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 2,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 4,
+          "expanded_inverse_degree": 4,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 3,
+              "patch_area2": "11/306"
+            },
+            {
+              "above": true,
+              "deleted_columns": 0,
+              "patch_area2": "3/1600"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 4,
+          "expanded_inverse_degree": 4,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 3,
+              "patch_area2": "37/2640"
+            },
+            {
+              "above": true,
+              "deleted_columns": 3,
+              "patch_area2": "509/740740"
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 333,
+        "coherent_exchange_checks": 267,
+        "price_plane_exceptions": 0,
+        "outer_exchange_checks": 0,
+        "common_planes": 280
+      }
+    },
+    {
+      "t": 2,
+      "a": 40,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": 0,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 37,
+          "expanded_inverse_degree": 37,
+          "scalar_coefficients": true,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "1/7",
+              "lambda": "1",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 55
+            },
+            {
+              "upper": true,
+              "u": "1/7",
+              "lambda": "1",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 87
+            },
+            {
+              "upper": false,
+              "u": "1/7",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 64
+            },
+            {
+              "upper": true,
+              "u": "2/3",
+              "lambda": "1",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 118
+            },
+            {
+              "upper": true,
+              "u": "2/3",
+              "lambda": "1",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 128
+            },
+            {
+              "upper": false,
+              "u": "2/3",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 121
+            },
+            {
+              "upper": false,
+              "u": "2/3",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 131
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "1",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 186
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "1",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 193
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 188
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 194
+            },
+            {
+              "upper": true,
+              "u": "3",
+              "lambda": "1",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 272
+            },
+            {
+              "upper": true,
+              "u": "3",
+              "lambda": "1",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 276
+            },
+            {
+              "upper": false,
+              "u": "3",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                0
+              ],
+              "prefix_columns": 274
+            },
+            {
+              "upper": false,
+              "u": "3",
+              "lambda": "7/3",
+              "target_row": [
+                22,
+                1
+              ],
+              "prefix_columns": 278
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 70,
+              "patch_area2": "2593/65856"
+            },
+            {
+              "above": true,
+              "deleted_columns": 70,
+              "patch_area2": "449/31200"
+            }
+          ]
+        },
+        null
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 2,
+      "a": 8,
+      "characteristic": 5,
+      "zero_outer_images": false,
+      "scalar_arm": 0,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 5,
+          "expanded_inverse_degree": 5,
+          "scalar_coefficients": true,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 6,
+              "patch_area2": "2575/239568"
+            },
+            {
+              "above": true,
+              "deleted_columns": 6,
+              "patch_area2": "4/6325"
+            }
+          ]
+        },
+        null
+      ],
+      "full_fan": {
+        "complete_original_cones": 231,
+        "coherent_exchange_checks": 284,
+        "price_plane_exceptions": 0,
+        "outer_exchange_checks": 25,
+        "common_planes": 323
+      }
+    },
+    {
+      "t": 3,
+      "a": 18,
+      "characteristic": 2,
+      "zero_outer_images": true,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 89
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 110
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 94
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 117
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 115
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 134
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 127
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 173
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "1359/7030"
+            },
+            {
+              "above": true,
+              "deleted_columns": 33,
+              "patch_area2": "4419/182780"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 89
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 110
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 94
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 117
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 115
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 134
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 127
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 173
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "1359/7030"
+            },
+            {
+              "above": true,
+              "deleted_columns": 33,
+              "patch_area2": "4419/182780"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 18,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 89
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 110
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 94
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 117
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 115
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 134
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 127
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 173
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "79/4230"
+            },
+            {
+              "above": true,
+              "deleted_columns": 33,
+              "patch_area2": "5/546"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 89
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 110
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 94
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 117
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 115
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 134
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 127
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 173
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "79/4230"
+            },
+            {
+              "above": true,
+              "deleted_columns": 33,
+              "patch_area2": "5/546"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 18,
+      "characteristic": 3,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": 14,
+          "scalar_coefficients": false,
+          "unit": true,
+          "matching_outer_restricted": false,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 89
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 110
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 94
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 117
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 115
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 134
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 127
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 145
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": true,
+              "u": "5",
+              "lambda": "3/2",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                0
+              ],
+              "prefix_columns": 169
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "10/3",
+              "target_row": [
+                11,
+                2
+              ],
+              "prefix_columns": 173
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "7/120"
+            },
+            {
+              "above": true,
+              "deleted_columns": 33,
+              "patch_area2": "9673/851136"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 2,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 14,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/4",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 84
+            },
+            {
+              "upper": true,
+              "u": "3/2",
+              "lambda": "3/4",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 104
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "11/6",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 102
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "11/6",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 124
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "1/2",
+              "target_row": [
+                0,
+                11
+              ],
+              "prefix_columns": 108
+            },
+            {
+              "upper": true,
+              "u": "2",
+              "lambda": "1/2",
+              "target_row": [
+                2,
+                11
+              ],
+              "prefix_columns": 126
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "4/3",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 132
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "4/3",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 148
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                12
+              ],
+              "prefix_columns": 172
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                2,
+                12
+              ],
+              "prefix_columns": 174
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 33,
+              "patch_area2": "19/1760"
+            },
+            {
+              "above": true,
+              "deleted_columns": 30,
+              "patch_area2": "660782/154540659"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 2,
+      "a": 7,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "arms": [
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 4,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 4,
+              "patch_area2": "1223/116688"
+            },
+            {
+              "above": true,
+              "deleted_columns": 4,
+              "patch_area2": "3/560"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 1,
+          "denominator_degree": 1,
+          "expanded_forward_degree": 4,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "matching_outer_restricted": true,
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": false,
+              "deleted_columns": 4,
+              "patch_area2": "1223/116688"
+            },
+            {
+              "above": true,
+              "deleted_columns": 4,
+              "patch_area2": "3/560"
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 130,
+        "coherent_exchange_checks": 122,
+        "price_plane_exceptions": 0,
+        "outer_exchange_checks": 0,
+        "common_planes": 233
+      }
+    }
+  ],
+  "common_arrangement": {
+    "planes": 98,
+    "integer_weights": 1824,
+    "degree_cap": 1
+  },
+  "common_sampler": [
+    {
+      "characteristic": 2,
+      "complete_original_cones": 47,
+      "weights_reused": 1824
+    },
+    {
+      "characteristic": 0,
+      "complete_original_cones": 86,
+      "weights_reused": 1824
+    },
+    {
+      "characteristic": 3,
+      "complete_original_cones": 43,
+      "weights_reused": 1824
+    }
+  ],
+  "limits": [
+    "Both arms require the compact rational triangle hypotheses for the quadratic theorem; one such arm controls its heavy sector.",
+    "Nonunit numerators require the matching outer-image condition; zero outer images satisfy it. Unit arms allow every compatible outer coefficient.",
+    "The scalar rational one-arm corollary permits arbitrary opposite coefficients and has the displayed logarithmic allowance.",
+    "Loop identities and prefix coloops retain original labels; denominator multiplication is an invertible row operation, not an algebra coordinate change.",
+    "Small expanded or inverse degree is not assumed; general units need not have compact representations of this form.",
+    "Strongest-current novelty, sharp unrestricted growth, actual polynomial fan separation and the original final paper remain unresolved."
+  ],
+  "source_sha256": {
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/hook_coherent_unit_windows.md": "7543c9494871a408bdd47d20f37a42dae02bc2afe68c5fc33a100784d7beb940",
+    "docs/hook_outer_unit_windows.md": "50c1023c372801df7437f8da3efae22b004380fef45f8c2db3943ca5c146660c",
+    "docs/hook_rational_leading_windows.md": "3223c69ddf2374af183fad8ef53ce06f337a8be6f4d0d40b45a61c56877d0b9a",
+    "docs/hook_tail_interface.md": "5493d30075dba53cf8354a5daedce30afbe707a34d8b8ad16e9ad2b7ab155dde",
+    "results/research/hook_outer_unit_window_checks.json": "192eb0b47bf0b2c46b2be75a96873e6ab01230c3a435142646fe9007c1b83503",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_central_prefix_checks.py": "26377696a5b4443f15045e16a91125239dd934baf1d1d5f1400dbe9cb0f09cc8",
+    "scripts/run_hook_coherent_unit_window_checks.py": "4c038a10363b3d472f8a6cd67e906ae62ca2ebe4fd90506725616c72e63f6505",
+    "scripts/run_hook_filtered_annihilator_checks.py": "9ebfcc35b27f75c586a7165282f076f763f20e5eaeeb8c9943a5f251d0347b76",
+    "scripts/run_hook_high_price_partner_checks.py": "e08140cf5c6caf12eda55c2f3d7116851f826e8d78352cde8fb2a261fa0abd31",
+    "scripts/run_hook_monomial_orbit_checks.py": "73d2df85c7b57f274924dafe7e10cad3ac93c91379797f551f5b545d48741b60",
+    "scripts/run_hook_monomial_perturbation_checks.py": "17577d12548240faac5d6de08f743e5624d08930ab0f0ae64f9a25bb9c968632",
+    "scripts/run_hook_outer_unit_window_checks.py": "84f8d35b6ac38bfb07ce23c5c5c02126c41d4144e781a1cec075abdf18818c4a",
+    "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_rational_leading_checks.py": "c3f0a59c68aa76c07def27d5486579c6c9e532913a2a22126106a1d211cfe10d",
+    "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
+    "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
