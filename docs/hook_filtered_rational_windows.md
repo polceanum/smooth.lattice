@@ -53,8 +53,7 @@ the exact original-column identity is
 \]
 Terms truncated out of the rectangle vanish. Since \(k\ge t\),
 every nonzero central source is pure and its opposite-arm projection
-vanishes. The same holds for every shifted head component used later;
-the unshifted heads need not satisfy an exact rational relation.
+vanishes. Unshifted head inputs can retain a nonzero denominator error.
 
 Normalize a heavy-sector weight as \((\lambda,u,1)\), \(u>1\),
 and let \(\lambda_0=t+(r-p)u\). The pure long leading terms in
@@ -173,9 +172,9 @@ The separated probes have, on each arm, a low polynomial of degree
 They meet (FR1) with \(h\le4\le t\), over every field, uniformly
 in the low and terminal coefficients while the selected leading term
 survives. Therefore (FR3) bounds this entire growing family by
-\(O(n^2)\). The completed finite fans and the remaining original
-running traversal are algorithm calibrations; none is an open
-polynomial-excess candidate or an asymptotic growth estimate.
+\(O(n^2)\). The finite fans serve as algorithm calibrations. Their
+counts do not establish an asymptotic growth rate or a polynomial
+lower excess.
 
 ## A degree gate identifies a remaining axis stratum
 
