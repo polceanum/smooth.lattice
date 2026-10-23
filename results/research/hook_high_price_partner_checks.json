@@ -1,0 +1,586 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_high_price_partner_checks.py",
+  "scope": "Sharp linear one-column partner growth in an actual thickness-two constant-axis central hook at prices of order n. No unrestricted count improvement, polynomial fan separation or exact novelty claimed.",
+  "uniform_result": {
+    "length": "8*A+8",
+    "field": "characteristic zero or p>2*A",
+    "partner_lower_bound": "ceil(3*A/5)<=K<=floor(3*A/4), at least 3*A/20-1 distinct partners",
+    "original_label": [
+      0,
+      "A",
+      3
+    ],
+    "partner": [
+      1,
+      0,
+      "A+1-K"
+    ],
+    "interval": "(K-1)/(A-3)<u<K/(A-3)",
+    "wall": "lambda=A*u+1-h, h=A-1-K",
+    "price": "lambda>A/5+2>2*max(u,1)",
+    "direction": "(1,-A,h-1)",
+    "four_planar_orders": "fixed on 1/2<u<1"
+  },
+  "counts": {
+    "complete_cheaper_column_projection_identities": 6865,
+    "fixed_four_planar_list_order_controls": 32,
+    "independent_adjacent_original_basis_and_wall_normal_checks": 32,
+    "independent_complete_original_fan_cones": 256,
+    "independent_complete_original_fans": 2,
+    "independent_entire_cheaper_quotient_kernel_equalities": 32,
+    "independent_integer_determinants_vs_classical_product": 64,
+    "independent_original_functionals_with_one_fixed_dual_exception": 32,
+    "independent_two_label_dual_exception_sets": 5,
+    "original_full_cheaper_nonloop_parallel_certificates": 32,
+    "small_characteristic_minor_degeneration_controls": 1
+  },
+  "original_quotient_replay_counts": {
+    "exact_potential_bridge_partitions": 5,
+    "independent_original_quotient_column_equalities": 2304,
+    "independent_commuting_matrix_columns": 4728,
+    "independent_module_successor_columns": 9516
+  },
+  "cases": [
+    {
+      "A": 20,
+      "length": 168,
+      "characteristic": 101,
+      "distinct_partners_certified": 4,
+      "walls": [
+        {
+          "K": 12,
+          "partner_h": 7,
+          "u": "45/68",
+          "lambda": "123/17",
+          "lambda_over_scalar_high_boundary": "123/34",
+          "direction": [
+            1,
+            -20,
+            6
+          ],
+          "cheaper_rank": 72,
+          "last_cheap_Z_lower_head": 12
+        },
+        {
+          "K": 13,
+          "partner_h": 6,
+          "u": "37/51",
+          "lambda": "485/51",
+          "lambda_over_scalar_high_boundary": "485/102",
+          "direction": [
+            1,
+            -20,
+            5
+          ],
+          "cheaper_rank": 74,
+          "last_cheap_Z_lower_head": 14
+        },
+        {
+          "K": 14,
+          "partner_h": 5,
+          "u": "40/51",
+          "lambda": "596/51",
+          "lambda_over_scalar_high_boundary": "298/51",
+          "direction": [
+            1,
+            -20,
+            4
+          ],
+          "cheaper_rank": 75,
+          "last_cheap_Z_lower_head": 15
+        },
+        {
+          "K": 15,
+          "partner_h": 4,
+          "u": "43/51",
+          "lambda": "707/51",
+          "lambda_over_scalar_high_boundary": "707/102",
+          "direction": [
+            1,
+            -20,
+            3
+          ],
+          "cheaper_rank": 76,
+          "last_cheap_Z_lower_head": 16
+        }
+      ],
+      "complete_original_fan": {
+        "initial_cones": 117,
+        "area2": "1"
+      }
+    },
+    {
+      "A": 24,
+      "length": 200,
+      "characteristic": 0,
+      "distinct_partners_certified": 4,
+      "walls": [
+        {
+          "K": 15,
+          "partner_h": 8,
+          "u": "43/63",
+          "lambda": "197/21",
+          "lambda_over_scalar_high_boundary": "197/42",
+          "direction": [
+            1,
+            -24,
+            7
+          ],
+          "cheaper_rank": 88,
+          "last_cheap_Z_lower_head": 16
+        },
+        {
+          "K": 16,
+          "partner_h": 7,
+          "u": "46/63",
+          "lambda": "242/21",
+          "lambda_over_scalar_high_boundary": "121/21",
+          "direction": [
+            1,
+            -24,
+            6
+          ],
+          "cheaper_rank": 89,
+          "last_cheap_Z_lower_head": 17
+        },
+        {
+          "K": 17,
+          "partner_h": 6,
+          "u": "65/84",
+          "lambda": "95/7",
+          "lambda_over_scalar_high_boundary": "95/14",
+          "direction": [
+            1,
+            -24,
+            5
+          ],
+          "cheaper_rank": 90,
+          "last_cheap_Z_lower_head": 18
+        },
+        {
+          "K": 18,
+          "partner_h": 5,
+          "u": "52/63",
+          "lambda": "332/21",
+          "lambda_over_scalar_high_boundary": "166/21",
+          "direction": [
+            1,
+            -24,
+            4
+          ],
+          "cheaper_rank": 91,
+          "last_cheap_Z_lower_head": 19
+        }
+      ],
+      "complete_original_fan": {
+        "initial_cones": 139,
+        "area2": "1"
+      }
+    },
+    {
+      "A": 36,
+      "length": 296,
+      "characteristic": 1000003,
+      "distinct_partners_certified": 6,
+      "walls": [
+        {
+          "K": 22,
+          "partner_h": 13,
+          "u": "64/99",
+          "lambda": "124/11",
+          "lambda_over_scalar_high_boundary": "62/11",
+          "direction": [
+            1,
+            -36,
+            12
+          ],
+          "cheaper_rank": 130,
+          "last_cheap_Z_lower_head": 22
+        },
+        {
+          "K": 23,
+          "partner_h": 12,
+          "u": "67/99",
+          "lambda": "147/11",
+          "lambda_over_scalar_high_boundary": "147/22",
+          "direction": [
+            1,
+            -36,
+            11
+          ],
+          "cheaper_rank": 132,
+          "last_cheap_Z_lower_head": 24
+        },
+        {
+          "K": 24,
+          "partner_h": 11,
+          "u": "70/99",
+          "lambda": "170/11",
+          "lambda_over_scalar_high_boundary": "85/11",
+          "direction": [
+            1,
+            -36,
+            10
+          ],
+          "cheaper_rank": 133,
+          "last_cheap_Z_lower_head": 25
+        },
+        {
+          "K": 25,
+          "partner_h": 10,
+          "u": "73/99",
+          "lambda": "193/11",
+          "lambda_over_scalar_high_boundary": "193/22",
+          "direction": [
+            1,
+            -36,
+            9
+          ],
+          "cheaper_rank": 134,
+          "last_cheap_Z_lower_head": 26
+        },
+        {
+          "K": 26,
+          "partner_h": 9,
+          "u": "76/99",
+          "lambda": "216/11",
+          "lambda_over_scalar_high_boundary": "108/11",
+          "direction": [
+            1,
+            -36,
+            8
+          ],
+          "cheaper_rank": 135,
+          "last_cheap_Z_lower_head": 27
+        },
+        {
+          "K": 27,
+          "partner_h": 8,
+          "u": "79/99",
+          "lambda": "239/11",
+          "lambda_over_scalar_high_boundary": "239/22",
+          "direction": [
+            1,
+            -36,
+            7
+          ],
+          "cheaper_rank": 136,
+          "last_cheap_Z_lower_head": 28
+        }
+      ],
+      "complete_original_fan": null
+    },
+    {
+      "A": 48,
+      "length": 392,
+      "characteristic": 101,
+      "distinct_partners_certified": 8,
+      "walls": [
+        {
+          "K": 29,
+          "partner_h": 18,
+          "u": "113/180",
+          "lambda": "197/15",
+          "lambda_over_scalar_high_boundary": "197/30",
+          "direction": [
+            1,
+            -48,
+            17
+          ],
+          "cheaper_rank": 173,
+          "last_cheap_Z_lower_head": 29
+        },
+        {
+          "K": 30,
+          "partner_h": 17,
+          "u": "88/135",
+          "lambda": "688/45",
+          "lambda_over_scalar_high_boundary": "344/45",
+          "direction": [
+            1,
+            -48,
+            16
+          ],
+          "cheaper_rank": 174,
+          "last_cheap_Z_lower_head": 30
+        },
+        {
+          "K": 31,
+          "partner_h": 16,
+          "u": "91/135",
+          "lambda": "781/45",
+          "lambda_over_scalar_high_boundary": "781/90",
+          "direction": [
+            1,
+            -48,
+            15
+          ],
+          "cheaper_rank": 176,
+          "last_cheap_Z_lower_head": 32
+        },
+        {
+          "K": 32,
+          "partner_h": 15,
+          "u": "94/135",
+          "lambda": "874/45",
+          "lambda_over_scalar_high_boundary": "437/45",
+          "direction": [
+            1,
+            -48,
+            14
+          ],
+          "cheaper_rank": 177,
+          "last_cheap_Z_lower_head": 33
+        },
+        {
+          "K": 33,
+          "partner_h": 14,
+          "u": "97/135",
+          "lambda": "967/45",
+          "lambda_over_scalar_high_boundary": "967/90",
+          "direction": [
+            1,
+            -48,
+            13
+          ],
+          "cheaper_rank": 178,
+          "last_cheap_Z_lower_head": 34
+        },
+        {
+          "K": 34,
+          "partner_h": 13,
+          "u": "133/180",
+          "lambda": "352/15",
+          "lambda_over_scalar_high_boundary": "176/15",
+          "direction": [
+            1,
+            -48,
+            12
+          ],
+          "cheaper_rank": 178,
+          "last_cheap_Z_lower_head": 34
+        },
+        {
+          "K": 35,
+          "partner_h": 12,
+          "u": "103/135",
+          "lambda": "1153/45",
+          "lambda_over_scalar_high_boundary": "1153/90",
+          "direction": [
+            1,
+            -48,
+            11
+          ],
+          "cheaper_rank": 180,
+          "last_cheap_Z_lower_head": 36
+        },
+        {
+          "K": 36,
+          "partner_h": 11,
+          "u": "106/135",
+          "lambda": "1246/45",
+          "lambda_over_scalar_high_boundary": "623/45",
+          "direction": [
+            1,
+            -48,
+            10
+          ],
+          "cheaper_rank": 181,
+          "last_cheap_Z_lower_head": 37
+        }
+      ],
+      "complete_original_fan": null
+    },
+    {
+      "A": 64,
+      "length": 520,
+      "characteristic": 1000003,
+      "distinct_partners_certified": 10,
+      "walls": [
+        {
+          "K": 39,
+          "partner_h": 24,
+          "u": "115/183",
+          "lambda": "3151/183",
+          "lambda_over_scalar_high_boundary": "3151/366",
+          "direction": [
+            1,
+            -64,
+            23
+          ],
+          "cheaper_rank": 231,
+          "last_cheap_Z_lower_head": 39
+        },
+        {
+          "K": 40,
+          "partner_h": 23,
+          "u": "118/183",
+          "lambda": "3526/183",
+          "lambda_over_scalar_high_boundary": "1763/183",
+          "direction": [
+            1,
+            -64,
+            22
+          ],
+          "cheaper_rank": 232,
+          "last_cheap_Z_lower_head": 40
+        },
+        {
+          "K": 41,
+          "partner_h": 22,
+          "u": "121/183",
+          "lambda": "3901/183",
+          "lambda_over_scalar_high_boundary": "3901/366",
+          "direction": [
+            1,
+            -64,
+            21
+          ],
+          "cheaper_rank": 233,
+          "last_cheap_Z_lower_head": 41
+        },
+        {
+          "K": 42,
+          "partner_h": 21,
+          "u": "124/183",
+          "lambda": "4276/183",
+          "lambda_over_scalar_high_boundary": "2138/183",
+          "direction": [
+            1,
+            -64,
+            20
+          ],
+          "cheaper_rank": 235,
+          "last_cheap_Z_lower_head": 43
+        },
+        {
+          "K": 43,
+          "partner_h": 20,
+          "u": "127/183",
+          "lambda": "4651/183",
+          "lambda_over_scalar_high_boundary": "4651/366",
+          "direction": [
+            1,
+            -64,
+            19
+          ],
+          "cheaper_rank": 236,
+          "last_cheap_Z_lower_head": 44
+        },
+        {
+          "K": 44,
+          "partner_h": 19,
+          "u": "130/183",
+          "lambda": "5026/183",
+          "lambda_over_scalar_high_boundary": "2513/183",
+          "direction": [
+            1,
+            -64,
+            18
+          ],
+          "cheaper_rank": 237,
+          "last_cheap_Z_lower_head": 45
+        },
+        {
+          "K": 45,
+          "partner_h": 18,
+          "u": "133/183",
+          "lambda": "5401/183",
+          "lambda_over_scalar_high_boundary": "5401/366",
+          "direction": [
+            1,
+            -64,
+            17
+          ],
+          "cheaper_rank": 238,
+          "last_cheap_Z_lower_head": 46
+        },
+        {
+          "K": 46,
+          "partner_h": 17,
+          "u": "136/183",
+          "lambda": "5776/183",
+          "lambda_over_scalar_high_boundary": "2888/183",
+          "direction": [
+            1,
+            -64,
+            16
+          ],
+          "cheaper_rank": 239,
+          "last_cheap_Z_lower_head": 47
+        },
+        {
+          "K": 47,
+          "partner_h": 16,
+          "u": "139/183",
+          "lambda": "6151/183",
+          "lambda_over_scalar_high_boundary": "6151/366",
+          "direction": [
+            1,
+            -64,
+            15
+          ],
+          "cheaper_rank": 240,
+          "last_cheap_Z_lower_head": 48
+        },
+        {
+          "K": 48,
+          "partner_h": 15,
+          "u": "142/183",
+          "lambda": "6526/183",
+          "lambda_over_scalar_high_boundary": "3263/183",
+          "direction": [
+            1,
+            -64,
+            14
+          ],
+          "cheaper_rank": 241,
+          "last_cheap_Z_lower_head": 49
+        }
+      ],
+      "complete_original_fan": null
+    }
+  ],
+  "limits": [
+    "The determinant evaluation and greedy exchange criterion are classical.",
+    "The full fan is already O(n^2) by the saved passive-band theorem.",
+    "This refutes extending a local low-price partner cap, not a collective full-fan bound.",
+    "Exact priority and the original unrestricted objective remain unresolved."
+  ],
+  "source_sha256": {
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/hook_clipped_threshold_budget.md": "2474b61a581a265ce8c66b90e808cb99232945471d7553ab7eace0d8775eeca0",
+    "docs/hook_exception_partners.md": "fb4be00299fa3d5e5158676624e1d8e71d81bba93d97d3cc772726897ff9b74a",
+    "docs/hook_high_price_partners.md": "67e9fee4a2795119a55864a82620ed07eb0a2e8c398e4093e37204808c45ef1d",
+    "docs/hook_passive_band_fans.md": "6c6e61fe64944e3e3d462fe0207ef71465d188e49acb28fbe8bfe94cf203054a",
+    "results/research/hook_passive_band_checks.json": "b0e9c10b0528c0288e669125466233eedd268bbd6c9bc374693d27dd9a397c27",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_central_prefix_checks.py": "26377696a5b4443f15045e16a91125239dd934baf1d1d5f1400dbe9cb0f09cc8",
+    "scripts/run_hook_filtered_annihilator_checks.py": "9ebfcc35b27f75c586a7165282f076f763f20e5eaeeb8c9943a5f251d0347b76",
+    "scripts/run_hook_high_price_partner_checks.py": "e08140cf5c6caf12eda55c2f3d7116851f826e8d78352cde8fb2a261fa0abd31",
+    "scripts/run_hook_monomial_perturbation_checks.py": "17577d12548240faac5d6de08f743e5624d08930ab0f0ae64f9a25bb9c968632",
+    "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
+    "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
+    "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
