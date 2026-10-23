@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_axis_birth_checks.py",
+  "scope": "All-field collective crossing and exact profile reduction for zero-outer axis-dependent hooks, including nonunits and zeros, and the larger replicated-matrix family. No unrestricted endpoint, sharpness or exact strongest-current novelty claim.",
+  "uniform_result": {
+    "collective_count": "O(A^2+A*t^4), A=a-t>=t>=2",
+    "combined_box_count": "O(n^(17/8)), n asymptotic A*t",
+    "critical_aspect": "A>=c*t^2 implies O_c(n^2), with arbitrary coefficient degenerations and no prefix-regular or inverse-degree bound",
+    "profile_formula": "P(lambda,u)-sum_(i,j) max(u*(alpha_i((lambda-t)/u)-i),beta_j(lambda-t*u)-j,0)",
+    "curve_mechanism": "R_i=delta+kappa/(theta-t), kappa>0; each interaction is one increasing graph on either side. Pair contacts cost O(A), including coincident-arc endpoints.",
+    "oracle": "O(A^3+t^2) field operations and O(A^2) storage for a generic minimum profile; no optimal basis-output or bit-complexity claim"
+  },
+  "counts": {
+    "complete_interaction_curve_pair_contact_budgets": 342,
+    "complete_original_axis_fans": 2,
+    "exact_all_parameter_birth_tables": 49,
+    "independent_Krylov_normalized_birth_interlacings": 332,
+    "independent_entire_original_flag_cone_patches": 165,
+    "independent_entire_pure_prefix_birth_thresholds": 245,
+    "independent_entire_tensor_prefix_ranks": 159,
+    "independent_non_Toeplitz_original_replicated_profiles": 52,
+    "independent_original_line_vs_ratio_contact_equalities": 1479,
+    "independent_original_minimum_profiles": 165,
+    "independent_projective_birth_curve_pieces": 626,
+    "independent_two_flag_intersection_rank_tables": 207
+  },
+  "tensor_prefix_cases": [
+    {
+      "short_dimension": 2,
+      "characteristic": 0,
+      "rank": 4,
+      "prefixes": 19
+    },
+    {
+      "short_dimension": 2,
+      "characteristic": 2,
+      "rank": 4,
+      "prefixes": 19
+    },
+    {
+      "short_dimension": 3,
+      "characteristic": 3,
+      "rank": 9,
+      "prefixes": 35
+    },
+    {
+      "short_dimension": 3,
+      "characteristic": 101,
+      "rank": 9,
+      "prefixes": 35
+    },
+    {
+      "short_dimension": 4,
+      "characteristic": 2,
+      "rank": 16,
+      "prefixes": 51
+    }
+  ],
+  "non_Toeplitz_replicated_profile_cases": [
+    {
+      "long_dimension": 6,
+      "short_dimension": 2,
+      "characteristic": 0,
+      "dependent_head_vectors": true,
+      "profile_checks": 17
+    },
+    {
+      "long_dimension": 7,
+      "short_dimension": 3,
+      "characteristic": 2,
+      "dependent_head_vectors": true,
+      "profile_checks": 17
+    },
+    {
+      "long_dimension": 8,
+      "short_dimension": 3,
+      "characteristic": 101,
+      "dependent_head_vectors": true,
+      "profile_checks": 18
+    }
+  ],
+  "original_axis_cases": [
+    {
+      "t": 2,
+      "a": 8,
+      "characteristic": 101,
+      "mode": "dense",
+      "operators": [
+        {
+          "0": "44",
+          "1": "7",
+          "2": "27",
+          "3": "67",
+          "4": "91",
+          "5": "58"
+        },
+        {
+          "0": "36",
+          "1": "72",
+          "2": "68",
+          "3": "86",
+          "4": "67",
+          "5": "75"
+        }
+      ],
+      "original_profile_and_cone_checks": 19,
+      "complete_original_cones": 55,
+      "birth_pieces": [
+        [
+          7,
+          9
+        ],
+        [
+          9,
+          9
+        ]
+      ]
+    },
+    {
+      "t": 3,
+      "a": 12,
+      "characteristic": 1009,
+      "mode": "dense",
+      "operators": [
+        {
+          "0": "322",
+          "1": "697",
+          "2": "570",
+          "3": "346",
+          "4": "669",
+          "5": "426",
+          "6": "338",
+          "7": "101",
+          "8": "242"
+        },
+        {
+          "0": "954",
+          "1": "964",
+          "2": "82",
+          "3": "560",
+          "4": "600",
+          "5": "928",
+          "6": "1008",
+          "7": "112",
+          "8": "993"
+        }
+      ],
+      "original_profile_and_cone_checks": 22,
+      "complete_original_cones": null,
+      "birth_pieces": [
+        [
+          13,
+          13,
+          13
+        ],
+        [
+          13,
+          13,
+          13
+        ]
+      ]
+    },
+    {
+      "t": 3,
+      "a": 16,
+      "characteristic": 3,
+      "mode": "sparse",
+      "operators": [
+        {
+          "0": "1",
+          "5": "2",
+          "9": "1"
+        },
+        {
+          "0": "1",
+          "4": "1",
+          "10": "2"
+        }
+      ],
+      "original_profile_and_cone_checks": 19,
+      "complete_original_cones": null,
+      "birth_pieces": [
+        [
+          5,
+          5,
+          9
+        ],
+        [
+          7,
+          7,
+          5
+        ]
+      ]
+    },
+    {
+      "t": 3,
+      "a": 16,
+      "characteristic": 0,
+      "mode": "binomial",
+      "operators": [
+        {
+          "0": "1",
+          "5": "1"
+        },
+        {
+          "0": "1",
+          "6": "1"
+        }
+      ],
+      "original_profile_and_cone_checks": 21,
+      "complete_original_cones": null,
+      "birth_pieces": [
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "characteristic": 2,
+      "mode": "nonunit",
+      "operators": [
+        {
+          "1": "1",
+          "4": "1"
+        },
+        {
+          "2": "1",
+          "5": "1"
+        }
+      ],
+      "original_profile_and_cone_checks": 21,
+      "complete_original_cones": null,
+      "birth_pieces": [
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          3,
+          3,
+          1
+        ]
+      ]
+    },
+    {
+      "t": 2,
+      "a": 9,
+      "characteristic": 101,
+      "mode": "zero",
+      "operators": [
+        {},
+        {
+          "0": "1",
+          "3": "1"
+        }
+      ],
+      "original_profile_and_cone_checks": 20,
+      "complete_original_cones": 4,
+      "birth_pieces": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          3
+        ]
+      ]
+    },
+    {
+      "t": 4,
+      "a": 17,
+      "characteristic": 101,
+      "mode": "sparse",
+      "operators": [
+        {
+          "0": "1",
+          "5": "2",
+          "9": "1"
+        },
+        {
+          "0": "1",
+          "4": "1",
+          "10": "2"
+        }
+      ],
+      "original_profile_and_cone_checks": 21,
+      "complete_original_cones": null,
+      "birth_pieces": [
+        [
+          5,
+          5,
+          5,
+          7
+        ],
+        [
+          7,
+          5,
+          5,
+          5
+        ]
+      ]
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "characteristic": 3,
+      "mode": "scalar",
+      "operators": [
+        {
+          "0": "1"
+        },
+        {
+          "0": "1"
+        }
+      ],
+      "original_profile_and_cone_checks": 22,
+      "complete_original_cones": null,
+      "birth_pieces": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    }
+  ],
+  "curve_contacts": [
+    {
+      "t": 2,
+      "a": 8,
+      "characteristic": 101,
+      "mode": "dense",
+      "curves": 4,
+      "pieces": 41,
+      "largest_pair_contacts": 6,
+      "noncoincident_segment_contacts_with_multiplicity": 4,
+      "coincident_segment_overlaps_with_multiplicity": 6
+    },
+    {
+      "t": 3,
+      "a": 12,
+      "characteristic": 1009,
+      "mode": "dense",
+      "curves": 9,
+      "pieces": 155,
+      "largest_pair_contacts": 10,
+      "noncoincident_segment_contacts_with_multiplicity": 44,
+      "coincident_segment_overlaps_with_multiplicity": 41
+    },
+    {
+      "t": 3,
+      "a": 16,
+      "characteristic": 3,
+      "mode": "sparse",
+      "curves": 9,
+      "pieces": 101,
+      "largest_pair_contacts": 9,
+      "noncoincident_segment_contacts_with_multiplicity": 299,
+      "coincident_segment_overlaps_with_multiplicity": 175
+    },
+    {
+      "t": 3,
+      "a": 16,
+      "characteristic": 0,
+      "mode": "binomial",
+      "curves": 9,
+      "pieces": 54,
+      "largest_pair_contacts": 4,
+      "noncoincident_segment_contacts_with_multiplicity": 180,
+      "coincident_segment_overlaps_with_multiplicity": 144
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "characteristic": 2,
+      "mode": "nonunit",
+      "curves": 9,
+      "pieces": 48,
+      "largest_pair_contacts": 4,
+      "noncoincident_segment_contacts_with_multiplicity": 186,
+      "coincident_segment_overlaps_with_multiplicity": 156
+    },
+    {
+      "t": 2,
+      "a": 9,
+      "characteristic": 101,
+      "mode": "zero",
+      "curves": 0,
+      "pieces": 0,
+      "largest_pair_contacts": 0,
+      "noncoincident_segment_contacts_with_multiplicity": 0,
+      "coincident_segment_overlaps_with_multiplicity": 0
+    },
+    {
+      "t": 4,
+      "a": 17,
+      "characteristic": 101,
+      "mode": "sparse",
+      "curves": 16,
+      "pieces": 139,
+      "largest_pair_contacts": 8,
+      "noncoincident_segment_contacts_with_multiplicity": 703,
+      "coincident_segment_overlaps_with_multiplicity": 450
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "characteristic": 3,
+      "mode": "scalar",
+      "curves": 9,
+      "pieces": 18,
+      "largest_pair_contacts": 1,
+      "noncoincident_segment_contacts_with_multiplicity": 0,
+      "coincident_segment_overlaps_with_multiplicity": 72
+    }
+  ],
+  "non_Toeplitz_replicated_matrix_curve_control": {
+    "curves": 9,
+    "pieces": 70,
+    "largest_pair_contacts": 7,
+    "noncoincident_segment_contacts_with_multiplicity": 63,
+    "coincident_segment_overlaps_with_multiplicity": 44
+  },
+  "limits": [
+    "Both outer images vanish; transverse dependence is not removed by a coordinate change.",
+    "The generic compatible hook family was already quadratically bounded up to logarithms; finite fan counts are calibration, not asymptotic lower evidence.",
+    "Classical flag splitting, matroid greedy/dual facts, arrangements and the lattice-volume theorem are credited. Exact priority of the combined bound is unestablished.",
+    "Sharp unrestricted G_3, infinite actual polynomial excess, the consequential unrestricted endpoint and the final paper remain incomplete."
+  ],
+  "source_sha256": {
+    "docs/hook_axis_birth_curves.md": "d3166f48b98a23987b2e55a12617ff5aa24576501a568e7d813f1b772893da33",
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/square_zero_extension_fans.md": "4035c5a040237d8579319581020859c916585b0f21de5c2279587f91e8c7b1b3",
+    "results/research/hook_inverse_orientation_checks.json": "5b886132d428046f10d5d133112d56aa63a112a2bf66d8e4c690a1914522ca60",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_axis_birth_checks.py": "706638a5c886f4b3f4f1371128ac9ceb6f07784943cafb8e76ad755e6396f508",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
