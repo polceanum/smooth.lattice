@@ -89,6 +89,48 @@ def build(t,a,pairs,p,rng,zero_outer=False,matched_nonunit=True):
 def weights(lam,u,arm):return (lam,u,Q(1)) if arm==0 else (lam,Q(1),u)
 
 
+def outer_filtered_controls(data,cols,t,a,arm,spec,p):
+    """Original PF=QWF relation, prices, and separate full-prefix ranks."""
+    P,Qpoly,W,dp,dq=spec;A=a-t
+    head=(0,a,0) if arm==0 else (0,0,a)
+    F={(data[0][i][arm]-t,data[0][i][1-arm]):c
+       for i,c in cols[head].items() if data[0][i][arm]>=t}
+    H=multiply(Qpoly,F,A,t,p)
+    def outer(i,j):return (0,a+i,j) if arm==0 else (0,j,a+i)
+    start=max(2*t,t+dp);eligible=[];before_old=0;rank_checks=0
+    for i,j in product(range(start,A),range(t)):
+        # Exhaust the small fixtures, stratify the larger rectangles.
+        if A*t>120 and i not in {start,A-1,(start+A-1)//2} and j not in {0,t-1}:continue
+        e=outer(i,j);k=i-dp;terms=Counter()
+        for (r,s),c in P.items():terms[outer(k+r,j+s)]+=c
+        for (r,s),c in H.items():terms[lower(t,arm,k+r,j+s)]-=c
+        terms=clean(terms,p);assert terms.get(e)==P[dp,0]
+        out=Counter()
+        for v,c in terms.items():
+            column=cols.get(v,{})
+            if column:
+                assert v in data[4][arm]
+                if v!=e:
+                    if v[arm+1]>=a:assert v[arm+1]<e[arm+1]
+                    for u in (Q(1001,1000),Q(2),Q(17)):
+                        w=weights(Q(1),u,arm)
+                        assert dot(w,v)<dot(w,e)
+            for r,x in column.items():out[r]+=c*x
+        assert not clean(out,p)
+        COUNTS['independent_original_outer_filtered_identities']+=1
+        eligible.append((i,j))
+        if i<t+t*axis_order(P):before_old+=1
+    for i,j in eligible[:2]+eligible[-2:]:
+        e=outer(i,j);w=weights(Q(31),Q(1001,1000),arm)
+        cheaper=tuple(v for v in cols if dot(w,v)<dot(w,e))
+        piv=field_basis(cheaper,cols.__getitem__,p)[1]
+        assert not field_reduce(cols[e],piv,p)[0]
+        rank_checks+=1;COUNTS['independent_outer_entire_cheaper_prefix_rank_checks']+=1
+    COUNTS['outer_filtered_checks_before_axis_membership_threshold']+=before_old
+    return {'input_threshold':start,'identities':len(eligible),
+            'before_old_axis_membership_threshold':before_old,'independent_prefix_ranks':rank_checks}
+
+
 def nonunit_outer_controls(data,cols,t,a,arm,spec,p):
     """Axis-power certificate and original late-source reconstruction."""
     P,Qpoly,W,dp,dq=spec;nu=axis_order(P);assert nu>0
@@ -250,7 +292,8 @@ def inventory(data,t,a,d,scalar_arm=None,nu=0):
 def fan_controls(data,cols,t,a,spec,p,scalar_arm=None,matched_nonunit=True):
     fan=complete_fan(cols,4*a*t-2*t*t,p)
     d=max(max(s[3:]) for s in spec if s is not None)
-    nus=[axis_order(s[0]) if s is not None and not matched_nonunit else 0 for s in spec];nu=max(nus)
+    # The filtered PF=QWF identity removes the old axis-order allowance.
+    nu=0
     planes=inventory(data,t,a,d,scalar_arm,nu)
     Y,Z=set(data[4][0]),set(data[4][1]);checks=0;price=0;outer=0
     for B,poly in fan.items():
@@ -276,9 +319,9 @@ def fan_controls(data,cols,t,a,spec,p,scalar_arm=None,matched_nonunit=True):
                     M,j=chosen[arm+1],chosen[2-arm];K=other[2-arm]
                     if not chosen[0] and M>=a:
                         i=M-a
-                        if nus[arm]:assert u>1 and i<t*max(2,nus[arm]+1)
-                        else:assert (i+1)*u+j<=2*t-1
-                        if u>1:assert abs(M-a)<=3*t+d+t*nus[arm]
+                        if u>1:assert i<max(2*t,t+dp)
+                        if P.get((0,0)):assert (i+1)*u+j<=2*t-1
+                        if u>1:assert abs(M-a)<=3*t+d
                         outer+=1
                     else:
                         q=M-t
@@ -330,6 +373,9 @@ def main():
              (3,18,(nonunit_two,geo),3,False,False,None,False),
              (3,14,(nonunit,nonunit),0,False,False,None,False),
              (2,8,(nonunit,nonunit),101,False,True,None,False)]
+    for t,a,p,full in ((2,7,101,True),(3,11,2,True),(4,30,3,False),(6,32,2,False),(3,14,0,False)):
+        growing=({(t,0):1,(0,1):1},{(0,0):1})
+        configs.append((t,a,(growing,growing),p,False,full,None,False))
     for config in configs:
         t,a,pairs,p,zero_outer,full,scalar_arm=config[:7]
         matched=config[7] if len(config)>7 else True
@@ -340,6 +386,7 @@ def main():
             certificates,patches=chart_controls(data,cols,charts[arm],t,a,arm,s,p,is_scalar)
             unit=bool(s[2].get((0,0)))
             outer_control=nonunit_outer_controls(data,cols,t,a,arm,s,p) if not unit and not matched else None
+            filtered_outer=outer_filtered_controls(data,cols,t,a,arm,s,p)
             expanded=max(i for i,j in s[2])
             inverse_degree=max(i for i,j in inverse(s[2],a-t,t,p)) if unit else None
             if pairs[arm]==geo:
@@ -349,12 +396,13 @@ def main():
                          'expanded_forward_degree':expanded,'expanded_inverse_degree':inverse_degree,
                          'scalar_coefficients':is_scalar,'unit':unit,'axis_order':axis_order(s[0]),
                          'matching_outer_restricted':not unit and matched,'arbitrary_outer_certificate':outer_control,
+                         'filtered_outer_certificate':filtered_outer,
                          'leading_prefix_certificates':certificates,'whole_region_patches':patches})
         fan=fan_controls(data,cols,t,a,spec,p,scalar_arm,matched) if full else None
         cases.append({'t':t,'a':a,'characteristic':p,'zero_outer_images':zero_outer,'scalar_arm':scalar_arm,
                       'matching_nonunit_outer_images':matched,'arms':arms,'full_fan':fan})
         print('Rational leading case passed',t,a,p,'scalar_arm',scalar_arm,flush=True)
-    t=2;a=5;d0=1;nu0=1;data=model(t,a);planes=inventory(data,t,a,d0,nu=nu0);weights_list=common_list(planes,a);samplers=[]
+    t=2;a=5;d0=1;data=model(t,a);planes=inventory(data,t,a,d0);weights_list=common_list(planes,a);samplers=[]
     for p,pairs,matched in ((2,(geo,geo),True),(0,(({(0,0):2,(1,0):1,(0,1):1},{(0,0):1,(1,0):-1}),geo),True),
                            (3,(nonunit,nonunit),True),(101,(nonunit,nonunit),False)):
         data,co,cols,spec,charts=build(t,a,pairs,p,rng,matched_nonunit=matched)
@@ -378,22 +426,23 @@ def main():
                 target='scripts/'+str(name)+'.py'
                 if str(name).startswith('run_') and (ROOT/target).exists() and target not in files:files.add(target);pending.append(target)
     report={'schema_version':1,'status':'passed','command':'python3 -B scripts/run_hook_rational_leading_checks.py',
-            'scope':'All-field compact rational leading-coordinate theorem, including arbitrary nonunit outer images with an axis-order allowance. Unit or matching-image arms have the sharper degree-only bound. Scalar rational unit one-arm corollary permits an arbitrary opposite arm. No unrestricted endpoint or exact novelty claimed.',
+            'scope':'All-field degree-only compact rational leading-coordinate theorem, including arbitrary nonunit outer images and growing axis orders. The PF=QWF filtered source relation removes the old axis-order loss. Scalar rational unit one-arm corollary permits an arbitrary opposite arm. No unrestricted endpoint or exact novelty claimed.',
             'uniform_result':{'hypotheses':'Q has nonzero constant; P,Q have total degrees p,r<A and nonzero pure q^p,q^r coefficients; numerator axis order is finite',
-                              'two_arm_full_fan':'O(a^2*(t+d)^2)=O(n^2*(1+d/t)^2) for unit or matching-image arms',
-                              'heavy_endpoint_strip':'M<=3t+d or |M-a|<=3t+d for unit/matching arms; add t*nu to the outer band otherwise; price planes are retained',
+                              'two_arm_full_fan':'O(a^2*(t+d)^2)=O(n^2*(1+d/t)^2), all compatible outer images, unit or nonunit numerators',
+                              'heavy_endpoint_strip':'M<=3t+d or |M-a|<=3t+d; price planes are retained',
                               'price_plane':'lambda=t+(r-p)*u',
-                              'common_integer_weights':'O(a^2*(t+d0+t*nu0)^2), height O(a^2); nu0=0 for unit or matching-image arms',
+                              'common_integer_weights':'O(a^2*(t+d0)^2), height O(a^2); no axis-order cap or image-membership restriction',
                               'scalar_one_arm':'O(n^2*(1+d/t+log(a/t))^2), arbitrary compatible opposite and outer images',
-                              'nonunit_extension':'The same quadratic bound holds with Q unit and matching outer components f0Y=W_Y*B_Y, f2Z=W_Z*B_Z on each nonunit arm; cross outer components remain arbitrary.',
-                              'arbitrary_nonunit_outer_bound':'O(a^2*(t+d+t*nu)^2)=O(n^2*(1+d/t+nu)^2), nu=max ord_q P(q,0)',
-                              'axis_power_certificate':'q^(nu*t) belongs to W*R_L; outer shifts i>=t+nu*t lie in the pure central source span',
+                              'filtered_outer_identity':'P*O=(Q*F)*L in original pure labels; all outer inputs i>=max(2t,t+p) are loops modulo strictly cheaper columns on u>1',
+                              'nonunit_extension':'No matching outer-image factorization or axis-order allowance is needed; only Q is required to be a unit.',
+                              'growing_axis_family':'Both W=q^nu+v, 1<=nu<A, have O(n^2*(1+nu/t)^2) fans with arbitrary compatible outers; nu=O(t) is quadratic.',
+                              'axis_power_certificate':'Retained older membership control q^(nu*t) in W*R_L; unnecessary for the stronger filtered fan bound',
                               'geometric_family':'W=1+v/(1-q) has compact degree 1 and expanded forward/inverse degrees A-1; both such arms give a quadratic full fan'},
             'counts':dict(sorted(COUNTS.items())),'fan_counts':dict(sorted(FAN.items())),
             'original_quotient_replay_counts':dict(REPLAY),'cases':cases,
-            'common_arrangement':{'planes':len(planes),'integer_weights':len(weights_list),'degree_cap':d0,'axis_order_cap':nu0},'common_sampler':samplers,
+            'common_arrangement':{'planes':len(planes),'integer_weights':len(weights_list),'degree_cap':d0,'axis_order_cap':None},'common_sampler':samplers,
             'limits':['Both arms require the compact rational triangle hypotheses for the quadratic theorem; one such arm controls its heavy sector.',
-                      'Nonunit arbitrary outer images use the axis-order allowance; matching outer images retain the sharper degree-only count. Unit arms allow every compatible outer coefficient.',
+                      'Nonunit and unit numerators both permit arbitrary compatible outer images in the degree-only bound; no axis-order allowance remains.',
                       'The scalar rational one-arm corollary permits arbitrary opposite coefficients and has the displayed logarithmic allowance.',
                       'Loop identities and prefix coloops retain original labels; denominator multiplication is an invertible row operation, not an algebra coordinate change.',
                       'Small expanded or inverse degree is not assumed; general units need not have compact representations of this form.',

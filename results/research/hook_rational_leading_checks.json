@@ -2,48 +2,52 @@
   "schema_version": 1,
   "status": "passed",
   "command": "python3 -B scripts/run_hook_rational_leading_checks.py",
-  "scope": "All-field compact rational leading-coordinate theorem, including arbitrary nonunit outer images with an axis-order allowance. Unit or matching-image arms have the sharper degree-only bound. Scalar rational unit one-arm corollary permits an arbitrary opposite arm. No unrestricted endpoint or exact novelty claimed.",
+  "scope": "All-field degree-only compact rational leading-coordinate theorem, including arbitrary nonunit outer images and growing axis orders. The PF=QWF filtered source relation removes the old axis-order loss. Scalar rational unit one-arm corollary permits an arbitrary opposite arm. No unrestricted endpoint or exact novelty claimed.",
   "uniform_result": {
     "hypotheses": "Q has nonzero constant; P,Q have total degrees p,r<A and nonzero pure q^p,q^r coefficients; numerator axis order is finite",
-    "two_arm_full_fan": "O(a^2*(t+d)^2)=O(n^2*(1+d/t)^2) for unit or matching-image arms",
-    "heavy_endpoint_strip": "M<=3t+d or |M-a|<=3t+d for unit/matching arms; add t*nu to the outer band otherwise; price planes are retained",
+    "two_arm_full_fan": "O(a^2*(t+d)^2)=O(n^2*(1+d/t)^2), all compatible outer images, unit or nonunit numerators",
+    "heavy_endpoint_strip": "M<=3t+d or |M-a|<=3t+d; price planes are retained",
     "price_plane": "lambda=t+(r-p)*u",
-    "common_integer_weights": "O(a^2*(t+d0+t*nu0)^2), height O(a^2); nu0=0 for unit or matching-image arms",
+    "common_integer_weights": "O(a^2*(t+d0)^2), height O(a^2); no axis-order cap or image-membership restriction",
     "scalar_one_arm": "O(n^2*(1+d/t+log(a/t))^2), arbitrary compatible opposite and outer images",
-    "nonunit_extension": "The same quadratic bound holds with Q unit and matching outer components f0Y=W_Y*B_Y, f2Z=W_Z*B_Z on each nonunit arm; cross outer components remain arbitrary.",
-    "arbitrary_nonunit_outer_bound": "O(a^2*(t+d+t*nu)^2)=O(n^2*(1+d/t+nu)^2), nu=max ord_q P(q,0)",
-    "axis_power_certificate": "q^(nu*t) belongs to W*R_L; outer shifts i>=t+nu*t lie in the pure central source span",
+    "filtered_outer_identity": "P*O=(Q*F)*L in original pure labels; all outer inputs i>=max(2t,t+p) are loops modulo strictly cheaper columns on u>1",
+    "nonunit_extension": "No matching outer-image factorization or axis-order allowance is needed; only Q is required to be a unit.",
+    "growing_axis_family": "Both W=q^nu+v, 1<=nu<A, have O(n^2*(1+nu/t)^2) fans with arbitrary compatible outers; nu=O(t) is quadratic.",
+    "axis_power_certificate": "Retained older membership control q^(nu*t) in W*R_L; unnecessary for the stronger filtered fan bound",
     "geometric_family": "W=1+v/(1-q) has compact degree 1 and expanded forward/inverse degrees A-1; both such arms give a quadratic full fan"
   },
   "counts": {
-    "arbitrary_nonunit_early_outer_columns_outside_central_span": 7,
-    "coefficient_independent_compact_rational_plane_inventories": 6,
-    "complete_original_rational_wall_plane_checks": 4564,
-    "independent_actual_compact_rational_coherent_exchanges": 1087,
-    "independent_actual_rational_outer_exchange_checks": 25,
-    "independent_arbitrary_nonunit_late_outer_source_relations": 110,
+    "arbitrary_nonunit_early_outer_columns_outside_central_span": 17,
+    "coefficient_independent_compact_rational_plane_inventories": 8,
+    "complete_original_rational_wall_plane_checks": 8112,
+    "independent_actual_compact_rational_coherent_exchanges": 1831,
+    "independent_actual_rational_outer_exchange_checks": 57,
+    "independent_arbitrary_nonunit_late_outer_source_relations": 158,
     "independent_compact_rational_common_list_equalities": 4,
-    "independent_entire_open_price_region_fan_patches": 68,
-    "independent_entire_prefix_leading_coordinate_certificates": 259,
+    "independent_entire_open_price_region_fan_patches": 78,
+    "independent_entire_prefix_leading_coordinate_certificates": 283,
     "independent_long_geometric_forward_inverse_controls": 12,
-    "independent_nonunit_axis_power_image_certificates": 7,
+    "independent_nonunit_axis_power_image_certificates": 17,
     "independent_nonunit_original_outer_image_factorizations": 196,
-    "independent_original_central_denominator_clearing_identities": 1444,
-    "independent_original_label_filtered_loop_identities": 376,
-    "independent_original_prefix_coloop_rank_equalities": 44,
+    "independent_original_central_denominator_clearing_identities": 2098,
+    "independent_original_label_filtered_loop_identities": 436,
+    "independent_original_outer_filtered_identities": 1130,
+    "independent_original_prefix_coloop_rank_equalities": 52,
+    "independent_outer_entire_cheaper_prefix_rank_checks": 160,
     "independent_rational_price_plane_exchange_exceptions": 0,
-    "independent_truncated_rational_operator_equalities": 42,
-    "independent_whole_normal_cone_denominator_chart_equalities": 84,
-    "nonunit_arms_with_matching_outer_image_condition": 9
+    "independent_truncated_rational_operator_equalities": 52,
+    "independent_whole_normal_cone_denominator_chart_equalities": 104,
+    "nonunit_arms_with_matching_outer_image_condition": 9,
+    "outer_filtered_checks_before_axis_membership_threshold": 240
   },
   "fan_counts": {
-    "independent_complete_original_fans": 9
+    "independent_complete_original_fans": 11
   },
   "original_quotient_replay_counts": {
-    "exact_potential_bridge_partitions": 23,
-    "independent_original_quotient_column_equalities": 4596,
-    "independent_commuting_matrix_columns": 10152,
-    "independent_module_successor_columns": 20784,
+    "exact_potential_bridge_partitions": 28,
+    "independent_original_quotient_column_equalities": 6558,
+    "independent_commuting_matrix_columns": 14520,
+    "independent_module_successor_columns": 29742,
     "independent_original_carrier_model_equalities": 5
   },
   "cases": [
@@ -65,6 +69,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 93,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -210,6 +220,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 93,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -366,6 +382,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 33,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -511,6 +533,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 33,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -667,6 +695,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 8,
+            "identities": 72,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -792,6 +826,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 8,
+            "identities": 72,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -948,6 +988,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -1073,6 +1119,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -1229,6 +1281,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 9,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1253,6 +1311,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 9,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -1409,6 +1473,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 0,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 0
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1433,6 +1503,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 0,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 0
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1468,6 +1544,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 4,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1492,6 +1574,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 4,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1533,6 +1621,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 0,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 0
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1557,6 +1651,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 0,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 0
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1598,6 +1698,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 68,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -1785,6 +1891,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 4,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -1827,6 +1939,12 @@
           "axis_order": 1,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -1972,6 +2090,12 @@
           "axis_order": 1,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -2128,6 +2252,12 @@
           "axis_order": 1,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -2273,6 +2403,12 @@
           "axis_order": 1,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -2429,6 +2565,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -2574,6 +2716,12 @@
           "axis_order": 2,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 9,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -2710,6 +2858,12 @@
           "axis_order": 1,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 2,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -2734,6 +2888,12 @@
           "axis_order": 1,
           "matching_outer_restricted": true,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 2,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -2778,6 +2938,12 @@
             "axis_order": 1,
             "late_sources": 27,
             "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
           },
           "leading_prefix_certificates": [
             {
@@ -2927,6 +3093,12 @@
             "axis_order": 1,
             "late_sources": 27,
             "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
           },
           "leading_prefix_certificates": [
             {
@@ -3088,6 +3260,12 @@
             "late_sources": 18,
             "early_source_outside": true
           },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 9,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -3213,6 +3391,12 @@
           "axis_order": 0,
           "matching_outer_restricted": false,
           "arbitrary_outer_certificate": null,
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 27,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -3373,6 +3557,12 @@
             "late_sources": 15,
             "early_source_outside": true
           },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 15,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [
             {
               "upper": true,
@@ -3521,6 +3711,12 @@
             "axis_order": 1,
             "late_sources": 15,
             "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 15,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
           },
           "leading_prefix_certificates": [
             {
@@ -3682,6 +3878,12 @@
             "late_sources": 4,
             "early_source_outside": true
           },
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 4,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -3710,6 +3912,12 @@
             "late_sources": 4,
             "early_source_outside": true
           },
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 4,
+            "before_old_axis_membership_threshold": 0,
+            "independent_prefix_ranks": 4
+          },
           "leading_prefix_certificates": [],
           "whole_region_patches": [
             {
@@ -3732,13 +3940,614 @@
         "outer_exchange_checks": 0,
         "common_planes": 323
       }
+    },
+    {
+      "t": 2,
+      "a": 7,
+      "characteristic": 101,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "matching_nonunit_outer_images": false,
+      "arms": [
+        {
+          "numerator_degree": 2,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 2,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 2,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 2,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 2,
+            "before_old_axis_membership_threshold": 2,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 2,
+              "patch_area2": "7/1188"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 2,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 2,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 2,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 2,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 4,
+            "identities": 2,
+            "before_old_axis_membership_threshold": 2,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 2,
+              "patch_area2": "7/1188"
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 186,
+        "coherent_exchange_checks": 134,
+        "price_plane_exceptions": 0,
+        "outer_exchange_checks": 12,
+        "common_planes": 233
+      }
+    },
+    {
+      "t": 3,
+      "a": 11,
+      "characteristic": 2,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "matching_nonunit_outer_images": false,
+      "arms": [
+        {
+          "numerator_degree": 3,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 3,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 3,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 3,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 6,
+            "before_old_axis_membership_threshold": 6,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 6,
+              "patch_area2": "101/2016"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 3,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 3,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 3,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 3,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 6,
+            "before_old_axis_membership_threshold": 6,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 6,
+              "patch_area2": "475/16632"
+            }
+          ]
+        }
+      ],
+      "full_fan": {
+        "complete_original_cones": 705,
+        "coherent_exchange_checks": 610,
+        "price_plane_exceptions": 0,
+        "outer_exchange_checks": 20,
+        "common_planes": 613
+      }
+    },
+    {
+      "t": 4,
+      "a": 30,
+      "characteristic": 3,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "matching_nonunit_outer_images": false,
+      "arms": [
+        {
+          "numerator_degree": 4,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 4,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 4,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 4,
+            "late_sources": 24,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 8,
+            "identities": 72,
+            "before_old_axis_membership_threshold": 48,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                21,
+                0
+              ],
+              "prefix_columns": 261
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                21,
+                3
+              ],
+              "prefix_columns": 302
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                21,
+                0
+              ],
+              "prefix_columns": 317
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                21,
+                3
+              ],
+              "prefix_columns": 348
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                21,
+                0
+              ],
+              "prefix_columns": 405
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                21,
+                3
+              ],
+              "prefix_columns": 410
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 72,
+              "patch_area2": "81/12320"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 4,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 4,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 4,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 4,
+            "late_sources": 24,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 8,
+            "identities": 72,
+            "before_old_axis_membership_threshold": 48,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                21
+              ],
+              "prefix_columns": 261
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                3,
+                21
+              ],
+              "prefix_columns": 302
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                21
+              ],
+              "prefix_columns": 317
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                3,
+                21
+              ],
+              "prefix_columns": 348
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                21
+              ],
+              "prefix_columns": 405
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                3,
+                21
+              ],
+              "prefix_columns": 410
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 72,
+              "patch_area2": "112283/10405200"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 6,
+      "a": 32,
+      "characteristic": 2,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "matching_nonunit_outer_images": false,
+      "arms": [
+        {
+          "numerator_degree": 6,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 6,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 6,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 6,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 12,
+            "identities": 40,
+            "before_old_axis_membership_threshold": 40,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                25,
+                0
+              ],
+              "prefix_columns": 380
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                25,
+                5
+              ],
+              "prefix_columns": 482
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                25,
+                0
+              ],
+              "prefix_columns": 464
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                25,
+                5
+              ],
+              "prefix_columns": 543
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                25,
+                0
+              ],
+              "prefix_columns": 596
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                25,
+                5
+              ],
+              "prefix_columns": 608
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 84,
+              "patch_area2": "26123/1356264"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 6,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 6,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 6,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 6,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 12,
+            "identities": 40,
+            "before_old_axis_membership_threshold": 40,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                25
+              ],
+              "prefix_columns": 380
+            },
+            {
+              "upper": false,
+              "u": "3/2",
+              "lambda": "1/3",
+              "target_row": [
+                5,
+                25
+              ],
+              "prefix_columns": 482
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                25
+              ],
+              "prefix_columns": 464
+            },
+            {
+              "upper": false,
+              "u": "2",
+              "lambda": "1/3",
+              "target_row": [
+                5,
+                25
+              ],
+              "prefix_columns": 543
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                0,
+                25
+              ],
+              "prefix_columns": 596
+            },
+            {
+              "upper": false,
+              "u": "5",
+              "lambda": "1/3",
+              "target_row": [
+                5,
+                25
+              ],
+              "prefix_columns": 608
+            }
+          ],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 84,
+              "patch_area2": "25147/10645050"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
+    },
+    {
+      "t": 3,
+      "a": 14,
+      "characteristic": 0,
+      "zero_outer_images": false,
+      "scalar_arm": null,
+      "matching_nonunit_outer_images": false,
+      "arms": [
+        {
+          "numerator_degree": 3,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 3,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 3,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 3,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 15,
+            "before_old_axis_membership_threshold": 15,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 15,
+              "patch_area2": "11/3024"
+            }
+          ]
+        },
+        {
+          "numerator_degree": 3,
+          "denominator_degree": 0,
+          "expanded_forward_degree": 3,
+          "expanded_inverse_degree": null,
+          "scalar_coefficients": false,
+          "unit": false,
+          "axis_order": 3,
+          "matching_outer_restricted": false,
+          "arbitrary_outer_certificate": {
+            "axis_order": 3,
+            "late_sources": 0,
+            "early_source_outside": true
+          },
+          "filtered_outer_certificate": {
+            "input_threshold": 6,
+            "identities": 15,
+            "before_old_axis_membership_threshold": 15,
+            "independent_prefix_ranks": 4
+          },
+          "leading_prefix_certificates": [],
+          "whole_region_patches": [
+            {
+              "above": true,
+              "deleted_columns": 15,
+              "patch_area2": "409/11760"
+            }
+          ]
+        }
+      ],
+      "full_fan": null
     }
   ],
   "common_arrangement": {
     "planes": 98,
     "integer_weights": 1824,
     "degree_cap": 1,
-    "axis_order_cap": 1
+    "axis_order_cap": null
   },
   "common_sampler": [
     {
@@ -3750,13 +4559,13 @@
     {
       "characteristic": 0,
       "matching_nonunit_outer_images": true,
-      "complete_original_cones": 86,
+      "complete_original_cones": 90,
       "weights_reused": 1824
     },
     {
       "characteristic": 3,
       "matching_nonunit_outer_images": true,
-      "complete_original_cones": 35,
+      "complete_original_cones": 46,
       "weights_reused": 1824
     },
     {
@@ -3768,7 +4577,7 @@
   ],
   "limits": [
     "Both arms require the compact rational triangle hypotheses for the quadratic theorem; one such arm controls its heavy sector.",
-    "Nonunit arbitrary outer images use the axis-order allowance; matching outer images retain the sharper degree-only count. Unit arms allow every compatible outer coefficient.",
+    "Nonunit and unit numerators both permit arbitrary compatible outer images in the degree-only bound; no axis-order allowance remains.",
     "The scalar rational one-arm corollary permits arbitrary opposite coefficients and has the displayed logarithmic allowance.",
     "Loop identities and prefix coloops retain original labels; denominator multiplication is an invertible row operation, not an algebra coordinate change.",
     "Small expanded or inverse degree is not assumed; general units need not have compact representations of this form.",
@@ -3778,7 +4587,7 @@
     "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
     "docs/hook_coherent_unit_windows.md": "7543c9494871a408bdd47d20f37a42dae02bc2afe68c5fc33a100784d7beb940",
     "docs/hook_outer_unit_windows.md": "50c1023c372801df7437f8da3efae22b004380fef45f8c2db3943ca5c146660c",
-    "docs/hook_rational_leading_windows.md": "83efff36a2f717c1c0f57a741ac58a13601f0fb8ab1f349be45e91723db9be08",
+    "docs/hook_rational_leading_windows.md": "2c7f6097d8f3310fe31b8601a988b8501c35749f34d5dad0e897d54669111386",
     "docs/hook_tail_interface.md": "5493d30075dba53cf8354a5daedce30afbe707a34d8b8ad16e9ad2b7ab155dde",
     "results/research/hook_outer_unit_window_checks.json": "192eb0b47bf0b2c46b2be75a96873e6ab01230c3a435142646fe9007c1b83503",
     "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
@@ -3796,7 +4605,7 @@
     "scripts/run_hook_outer_unit_window_checks.py": "84f8d35b6ac38bfb07ce23c5c5c02126c41d4144e781a1cec075abdf18818c4a",
     "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
     "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
-    "scripts/run_hook_rational_leading_checks.py": "31eb28235ce9d05735a843763c193018df6620e1a0e4d48e6de1ed9dfed94d1b",
+    "scripts/run_hook_rational_leading_checks.py": "963a88e60a85933a38bfee2143120b0322664979f52d452833ec5fb0403cb36c",
     "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
     "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
     "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
