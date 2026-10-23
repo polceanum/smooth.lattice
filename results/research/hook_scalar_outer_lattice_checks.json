@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_scalar_outer_lattice_checks.py",
+  "uniform_result": {
+    "setting": "A=a-t>=t>=2, n=4at-2t^2, arbitrary scalar central axes F,G and arbitrary scalar matching outer axes H,K, over every field.",
+    "fan_and_complete_refinement_bound": "O(A^2*t^2*log(2+A/t))=O(n^2*log(2+A/t)).",
+    "bounded_shift_lattice_lemma": "A low q^t affine constraint and a predictable-degree basis give gamma in the union of [d_j-E,d_j+t-1+E] whenever every shift changes by at most E.",
+    "weight_list": "Coefficient-dependent complete positive integer list with O(n^2*log(2+A/t)) members, height O(a^2).",
+    "limits": "Opposite-arm outer images and transverse coefficient dependence are outside this theorem."
+  },
+  "counts": {
+    "exact_polynomial_lattice_determinants": 4133,
+    "exact_three_stream_lattice_determinants_and_congruences": 3556,
+    "independent_original_vs_short_lattice_births": 432,
+    "independent_perturbed_shift_birth_band_checks": 432,
+    "exact_lower_kernel_lattice_congruences": 577,
+    "independent_lower_only_kernel_birth_checks": 171,
+    "coarse_windows_with_complete_local_inventory": 2082,
+    "maximum_positive_label_candidates_per_arm": 99,
+    "coarse_region_inactive": 14,
+    "coarse_region_full": 1458,
+    "positive_actual_births_in_window_bands": 60429,
+    "coarse_region_contract_full": 88,
+    "coarse_region_contract_high": 60,
+    "coarse_region_high": 462,
+    "larger_exact_weight_window_queries": 32,
+    "larger_nonvacuous_window_exclusions": 60,
+    "independent_dyadic_grid_product_budgets": 41,
+    "whole_refinement_patches_and_small_integer_samples": 6870,
+    "complete_refinement_facets_in_local_inventory": 23820,
+    "exact_area_one_covers_and_convex_profile_merges": 6,
+    "independent_complete_original_quotient_fans": 6
+  },
+  "factor_birth_comparisons": 864,
+  "lower_kernel_fixtures": [
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "dense"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "sparse"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "nonunit"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "dense"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "sparse"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "nonunit"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "dense"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "sparse"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "nonunit"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "dense"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "sparse"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "nonunit"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "dense"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "sparse"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "nonunit"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "dense"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "sparse"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "nonunit"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "dense"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "sparse"
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "nonunit"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "dense"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "sparse"
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "nonunit"
+    }
+  ],
+  "complete_original_fans": [
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 0,
+      "length": 40,
+      "refinement_patches": 758,
+      "actual_initial_ideal_cones": 42,
+      "original_fan_equal": true,
+      "exact_total_area": "1",
+      "coarse_windows_visited": 220,
+      "operators": [
+        [
+          {
+            "0": "1",
+            "2": "2"
+          },
+          {
+            "1": "1",
+            "3": "1"
+          }
+        ],
+        [
+          {
+            "0": "2",
+            "1": "1"
+          },
+          {
+            "0": "1",
+            "2": "2"
+          }
+        ]
+      ]
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 2,
+      "length": 48,
+      "refinement_patches": 1308,
+      "actual_initial_ideal_cones": 42,
+      "original_fan_equal": true,
+      "exact_total_area": "1",
+      "coarse_windows_visited": 444,
+      "operators": [
+        [
+          {
+            "0": "1",
+            "1": "1",
+            "2": "1"
+          },
+          {
+            "0": "1",
+            "3": "1"
+          }
+        ],
+        [
+          {
+            "1": "1",
+            "3": "1"
+          },
+          {
+            "2": "1",
+            "4": "1"
+          }
+        ]
+      ]
+    },
+    {
+      "A": 5,
+      "t": 3,
+      "characteristic": 3,
+      "length": 78,
+      "refinement_patches": 1030,
+      "actual_initial_ideal_cones": 29,
+      "original_fan_equal": true,
+      "exact_total_area": "1",
+      "coarse_windows_visited": 218,
+      "operators": [
+        [
+          {
+            "3": "1"
+          },
+          {
+            "0": "1",
+            "2": "1"
+          }
+        ],
+        [
+          {
+            "4": "1"
+          },
+          {
+            "1": "1"
+          }
+        ]
+      ]
+    },
+    {
+      "A": 6,
+      "t": 2,
+      "characteristic": 101,
+      "length": 56,
+      "refinement_patches": 1808,
+      "actual_initial_ideal_cones": 78,
+      "original_fan_equal": true,
+      "exact_total_area": "1",
+      "coarse_windows_visited": 504,
+      "operators": [
+        [
+          {
+            "0": "1",
+            "3": "2",
+            "5": "1"
+          },
+          {
+            "0": "1",
+            "2": "3"
+          }
+        ],
+        [
+          {
+            "0": "1",
+            "1": "2",
+            "4": "3"
+          },
+          {
+            "0": "1",
+            "5": "4"
+          }
+        ]
+      ]
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 3,
+      "length": 48,
+      "refinement_patches": 1282,
+      "actual_initial_ideal_cones": 15,
+      "original_fan_equal": true,
+      "exact_total_area": "1",
+      "coarse_windows_visited": 444,
+      "operators": [
+        [
+          {
+            "0": "1",
+            "1": "2",
+            "3": "1"
+          },
+          {}
+        ],
+        [
+          {
+            "2": "1",
+            "4": "1"
+          },
+          {}
+        ]
+      ]
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 2,
+      "length": 40,
+      "refinement_patches": 684,
+      "actual_initial_ideal_cones": 12,
+      "original_fan_equal": true,
+      "exact_total_area": "1",
+      "coarse_windows_visited": 220,
+      "operators": [
+        [
+          {},
+          {
+            "0": "1",
+            "2": "1"
+          }
+        ],
+        [
+          {},
+          {
+            "1": "1",
+            "3": "1"
+          }
+        ]
+      ]
+    }
+  ],
+  "larger_window_controls": [
+    {
+      "A": 96,
+      "t": 2,
+      "characteristic": 2,
+      "exact_weight_queries": 16,
+      "nonvacuous_window_exclusions": 30,
+      "coarse_windows": 16,
+      "scope": "Exact original factor elimination and window membership; no full original quotient fan at this size."
+    },
+    {
+      "A": 64,
+      "t": 3,
+      "characteristic": 1009,
+      "exact_weight_queries": 16,
+      "nonvacuous_window_exclusions": 30,
+      "coarse_windows": 16,
+      "scope": "Exact original factor elimination and window membership; no full original quotient fan at this size."
+    }
+  ],
+  "dyadic_grid_budget_controls": [
+    {
+      "A": 4,
+      "t": 2,
+      "dyadic_bands": 3,
+      "maximum_potential_bin_triples_in_one_band": 420,
+      "uniform_test_ceiling": "1024*(A/t)^2"
+    },
+    {
+      "A": 16,
+      "t": 2,
+      "dyadic_bands": 5,
+      "maximum_potential_bin_triples_in_one_band": 4500,
+      "uniform_test_ceiling": "1024*(A/t)^2"
+    },
+    {
+      "A": 64,
+      "t": 3,
+      "dyadic_bands": 7,
+      "maximum_potential_bin_triples_in_one_band": 29475,
+      "uniform_test_ceiling": "1024*(A/t)^2"
+    },
+    {
+      "A": 128,
+      "t": 2,
+      "dyadic_bands": 8,
+      "maximum_potential_bin_triples_in_one_band": 250900,
+      "uniform_test_ceiling": "1024*(A/t)^2"
+    },
+    {
+      "A": 256,
+      "t": 8,
+      "dyadic_bands": 7,
+      "maximum_potential_bin_triples_in_one_band": 64020,
+      "uniform_test_ceiling": "1024*(A/t)^2"
+    },
+    {
+      "A": 1024,
+      "t": 2,
+      "dyadic_bands": 11,
+      "maximum_potential_bin_triples_in_one_band": 15769620,
+      "uniform_test_ceiling": "1024*(A/t)^2"
+    }
+  ],
+  "limits": [
+    "Polynomial relation modules, weak Popov reduction and predictable degree are classical.",
+    "Exact finite original fans support the uniform proof; they do not establish an asymptotic lower excess.",
+    "No arbitrary transverse/opposite-outer theorem, unrestricted G_3 endpoint, exact current novelty, optimal bit complexity or smooth-number speed claim.",
+    "No coefficient-independent common weight list or profile formula is asserted."
+  ],
+  "source_sha256": {
+    "docs/hook_axis_birth_curves.md": "d3166f48b98a23987b2e55a12617ff5aa24576501a568e7d813f1b772893da33",
+    "docs/hook_axis_lattice_windows.md": "0c68abbbc349e8893cbe58325c3be67017b4880cf7de4cfade8710b4427eabb4",
+    "docs/hook_axis_linear_oracle.md": "7be44259c19c2e79b753e5df88aee60ef9563e6792e27eea0abfd422ab8ff35a",
+    "docs/hook_scalar_outer_lattice_fans.md": "f2218d1e1f3634db1fd5f5393af9ba6f17680a5fb70eca2841e1b6c8186219ed",
+    "docs/hook_superregular_axis_fans.md": "e6ff668bf67d175af37d51d5e83980cadabb134b6e78fda779c9d47b58fbb4c0",
+    "results/research/hook_axis_lattice_checks.json": "e40b3e4c0f8365d2e9e6f57c4c1e5dd37f67e1bb5a312b75cfaa7f76fc3c853d",
+    "results/research/hook_axis_linear_checks.json": "d1bb7092e803637aa1fc8cbd92747018c5ec19537edfe3ae2f3b7c623501a7d3",
+    "results/research/hook_superregular_axis_checks.json": "8cd5aa117201dd35458e1da356d8ed7ae0a51aa86092c407aa437498b5dc90fd",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_axis_birth_checks.py": "706638a5c886f4b3f4f1371128ac9ceb6f07784943cafb8e76ad755e6396f508",
+    "scripts/run_hook_axis_compilation_checks.py": "608bea2c12913268cc987b64f1a5f4bceb6a3e05c70340b0f847f0e7fe6f56a6",
+    "scripts/run_hook_axis_lattice_checks.py": "7be1776fd56202a0a4eef69c0cf6ac1d8e426af8a0d4f1aa2b2d501291aa4352",
+    "scripts/run_hook_axis_linear_checks.py": "83ef687abb19e8ba4b7b188d7d9242994b5bed5cda80582c8249a27e5959ca7f",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_scalar_outer_lattice_checks.py": "694a9f83614dd482c7a5f18f32fa022da329eb4e66e4e76859d29bafc2421ae7",
+    "scripts/run_hook_superregular_axis_checks.py": "d0dca987c5557c00ccbca0d2e62ededec444f096ba3fcec0b407866503d005f4",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
