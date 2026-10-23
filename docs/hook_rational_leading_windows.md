@@ -243,8 +243,52 @@ for its price-loop bound. Denominator multiplication is still invertible,
 and every leading identity and separating coordinate remains valid.
 Thus (RL3)--(RL4) follow unchanged. This includes mixed nonunits such
 as \((q+v)/(1-q)\); no monomial annihilator is assumed.
-No corresponding claim is made for nonunit arms with arbitrary
-outer components outside (RL12).
+For arbitrary nonunit outer components outside (RL12), use the
+axis-order allowance below instead of this sharper bound.
+
+## Arbitrary nonunit outer images and axis nilpotence
+
+There is a further bound without (RL12). For each arm put
+\(\nu=\operatorname{ord}_qP(q,0)\), which is finite because
+\([q^p]P\ne0\). With \(\nu_*\) the larger of the two axis orders,
+every compatible outer image is allowed in
+\[
+ g(I_\phi)=O\bigl(a^2(t+d+t\nu_*)^2\bigr)
+          =O\bigl(n^2(1+d/t+\nu_*)^2\bigr).              \tag{RL13}
+\]
+The corresponding common integer list has the same cardinality and
+height \(O(a^2)\). Thus fixed compact rational degree gives a quadratic
+full fan for unit and nonunit numerators alike, with arbitrary outer maps.
+For arms satisfying (RL12), the axis-order contribution can be omitted.
+
+Here is the precise algebraic reason. In
+\(R_L=K[q,v]/(q^L,v^t)\), write
+\(P=q^\nu R(q)+B(q,v)\), with \(R(0)\ne0\) and \(v\mid B\).
+The elementary difference-of-powers identity, and \(B^t=0\), give
+\[
+ q^{\nu t}R(q)^t
+ =P\sum_{j=0}^{t-1}(q^\nu R(q))^{t-1-j}(-B)^j.
+\]
+Since \(R,Q\) are units, \(q^{\nu t}\in WR_L\).
+This identity is valid in every characteristic, including when
+\(q^{\nu t}=0\) already.
+
+Take \(L=A-t\) and a pure outer source \((0,a+i,j)\).
+When \(L=0\) there are no pure outer inputs; assume \(L>0\).
+If \(i\ge t+\nu t\), its Y vector is in
+\(W(q^tR)\), the span of the original pure central sources:
+divide the long shift by \(q^t\), apply the preceding membership
+in \(R_L\), and lift back by \(q^t\). Hence its eligibility still
+requires \((i+1)u+j\le2t-1\). In the heavy sector \(u>1\),
+an outer source must consequently have
+\[
+                         i<t\max(2,\nu+1).              \tag{RL14}
+\]
+The central and upper leading-coordinate arguments did not require
+the numerator to be a unit. Thus only the translated outer strip
+grows, by \(O(t\nu)\). Replacing the strip width in (RL9) by
+\(6t+2d+2t\nu_*\) proves (RL13) and the common-list consequence.
+This does not require the matching outer image itself to lie in \(WR\).
 
 ## Verification and scope
 
@@ -264,10 +308,15 @@ and rational coefficients. Long geometric propagation is measured
 separately from compact rational degree.
 Nonunit controls verify matching outer-image factorizations against
 every original shifted pure outer column, including nonzero outer images.
+Additional controls use arbitrary nonunit outer images outside that
+matching-image class, verify the axis-power certificate, and reconstruct
+late outer columns from original central sources. Early outer columns
+are independently checked to lie outside their span.
 
 Rational formal division, triangular leading-term elimination, matroid
 faces and plane arrangements are classical. The quantitative coherent
 application is proved here; exact strongest-current novelty and
 sharpness remain unestablished. General operators need not have small
-rational representations satisfying (RL2). Nonunit arms with unrestricted
-outer images and the unrestricted sharp extremal problem remain open.
+rational representations satisfying (RL2). Large compact degree or axis
+order, failure of a pure long leading representation, and the unrestricted
+sharp extremal problem remain open.
