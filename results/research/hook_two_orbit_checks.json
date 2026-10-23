@@ -1,0 +1,829 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_two_orbit_checks.py",
+  "scope": "Both central arms arbitrary polynomials in one monomial each, with positive short steps, and zero outer images: uniformly O(n^2) full fans and a common quadratic integer list, all fields and nonunit or zero polynomials. A two-dimensional row-coset partition handles multiple bridges on one chain. No unrestricted endpoint or exact novelty claimed.",
+  "uniform_result": {
+    "central_arms": "W_i=F_i(q^nu_i*v^delta_i), nu_i>=0,1<=delta_i<t, F_i arbitrary",
+    "outer_images": "both zero",
+    "all_step_full_fan": "O(n^2), absolute constant",
+    "all_step_common_integer_list": "O(n^2), height O(a^2), fixed steps and arbitrary coefficients/fields",
+    "both_steep": "nu_i>=2*delta_i: O(t^4/(delta_Y^2*delta_Z^2)); comparison planes O(ceil(t/delta_Y)*ceil(t/delta_Z))",
+    "unit_short": "delta_Y=delta_Z=1,nu_Y,nu_Z>=1: O(t^4); if both nu_i=1, O(t^2)",
+    "bounded_slope_branch": "If one nu_i/delta_i<2, the earlier one-arm monomial-orbit theorem has beta<=3 and supplies the quadratic count/list",
+    "finite_offset_lattice_lemma": "A represented row direct sum with label offsets in s fixed classes and input differences in a lattice coordinate rectangle [-M,M]x[-N,N] has at most s^2*(2M+1)*(2N+1) comparison planes; its complete arrangement fixes every minimum basis. This is not an assertion of a variable-induced algebra grading."
+  },
+  "counts": {
+    "coefficient_independent_two_orbit_partitions": 13,
+    "complete_original_fan_cones_in_common_inventory": 229,
+    "independent_actual_nearby_step_cross_component_faces": 2,
+    "independent_all_coefficient_common_list_equalities": 4,
+    "independent_entire_component_vs_original_normal_cones": 22,
+    "independent_entire_prefix_pure_cross_arm_remainder_faces": 2,
+    "independent_integer_coset_comparison_coordinates": 48587,
+    "independent_original_basis_plane_inclusions": 1722,
+    "independent_original_row_coset_direct_sum_checks": 2984,
+    "independent_steep_lattice_rectangle_bounds": 396,
+    "independent_unit_short_lattice_rectangle_bounds": 152
+  },
+  "fan_counts": {
+    "independent_complete_original_fans": 14
+  },
+  "original_quotient_replay_counts": {
+    "exact_potential_bridge_partitions": 19,
+    "independent_original_quotient_column_equalities": 6102,
+    "independent_commuting_matrix_columns": 14286,
+    "independent_module_successor_columns": 29613,
+    "independent_original_carrier_model_equalities": 2
+  },
+  "one_arm_reused_counts": {
+    "independent_complete_common_arrangements": 1,
+    "independent_integer_sampler_chambers": 414
+  },
+  "cases": [
+    {
+      "t": 3,
+      "a": 9,
+      "steps": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "characteristic": 101,
+      "full_original_quotient_replay": true,
+      "partition_groups": 9,
+      "max_original_head_columns_sharing_one_row": 2,
+      "inventory": {
+        "method": "unit_short",
+        "lattice_index": 3,
+        "basis_coordinate_caps": [
+          21,
+          21
+        ],
+        "largest_observed_coordinates": [
+          3,
+          3
+        ],
+        "planes": 54,
+        "coarse_plane_bound": 16641
+      },
+      "complete_original_cones": 41
+    },
+    {
+      "t": 4,
+      "a": 13,
+      "steps": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          1
+        ]
+      ],
+      "characteristic": 2,
+      "full_original_quotient_replay": true,
+      "partition_groups": 15,
+      "max_original_head_columns_sharing_one_row": 2,
+      "inventory": {
+        "method": "unit_short",
+        "lattice_index": 5,
+        "basis_coordinate_caps": [
+          28,
+          28
+        ],
+        "largest_observed_coordinates": [
+          4,
+          3
+        ],
+        "planes": 89,
+        "coarse_plane_bound": 29241
+      },
+      "complete_original_cones": 45
+    },
+    {
+      "t": 4,
+      "a": 13,
+      "steps": [
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "characteristic": 3,
+      "full_original_quotient_replay": true,
+      "partition_groups": 36,
+      "max_original_head_columns_sharing_one_row": 1,
+      "inventory": {
+        "method": "steep",
+        "lattice_index": 16,
+        "basis_coordinate_caps": [
+          6,
+          6
+        ],
+        "largest_observed_coordinates": [
+          2,
+          2
+        ],
+        "planes": 32,
+        "coarse_plane_bound": 1521
+      },
+      "complete_original_cones": 10
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "steps": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          -1,
+          2
+        ]
+      ],
+      "characteristic": 0,
+      "full_original_quotient_replay": true,
+      "partition_groups": 13,
+      "max_original_head_columns_sharing_one_row": 3,
+      "inventory": {
+        "method": "diagonal",
+        "lattice_index": 0,
+        "basis_coordinate_caps": [
+          6,
+          0
+        ],
+        "largest_observed_coordinates": [
+          2,
+          0
+        ],
+        "planes": 16,
+        "coarse_plane_bound": 117
+      },
+      "complete_original_cones": 33
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "steps": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "characteristic": 3,
+      "full_original_quotient_replay": true,
+      "partition_groups": 9,
+      "max_original_head_columns_sharing_one_row": 3,
+      "inventory": {
+        "method": "unit_short",
+        "lattice_index": 1,
+        "basis_coordinate_caps": [
+          21,
+          21
+        ],
+        "largest_observed_coordinates": [
+          8,
+          6
+        ],
+        "planes": 157,
+        "coarse_plane_bound": 16641
+      },
+      "complete_original_cones": 68
+    },
+    {
+      "t": 4,
+      "a": 12,
+      "steps": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "characteristic": 3,
+      "full_original_quotient_replay": true,
+      "partition_groups": 17,
+      "max_original_head_columns_sharing_one_row": 2,
+      "inventory": {
+        "method": "bounded_one_arm",
+        "chosen_arm": 0,
+        "planes": 563
+      },
+      "complete_original_cones": 10
+    },
+    {
+      "t": 3,
+      "a": 9,
+      "steps": [
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "characteristic": 101,
+      "full_original_quotient_replay": true,
+      "partition_groups": 12,
+      "max_original_head_columns_sharing_one_row": 3,
+      "inventory": {
+        "method": "bounded_one_arm",
+        "chosen_arm": 0,
+        "planes": 284
+      },
+      "complete_original_cones": 12
+    },
+    {
+      "t": 5,
+      "a": 14,
+      "steps": [
+        [
+          3,
+          2
+        ],
+        [
+          8,
+          3
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "characteristic": 101,
+      "full_original_quotient_replay": true,
+      "partition_groups": 43,
+      "max_original_head_columns_sharing_one_row": 2,
+      "inventory": {
+        "method": "bounded_one_arm",
+        "chosen_arm": 0,
+        "planes": 827
+      },
+      "complete_original_cones": 10
+    },
+    {
+      "t": 6,
+      "a": 24,
+      "steps": [
+        [
+          3,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          1,
+          0,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          1,
+          0,
+          1
+        ]
+      ],
+      "characteristic": 2,
+      "full_original_quotient_replay": true,
+      "partition_groups": 35,
+      "max_original_head_columns_sharing_one_row": 2,
+      "inventory": {
+        "method": "unit_short",
+        "lattice_index": 11,
+        "basis_coordinate_caps": [
+          42,
+          42
+        ],
+        "largest_observed_coordinates": [
+          6,
+          4
+        ],
+        "planes": 159,
+        "coarse_plane_bound": 65025
+      },
+      "complete_original_cones": null
+    },
+    {
+      "t": 8,
+      "a": 28,
+      "steps": [
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          4
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "characteristic": 3,
+      "full_original_quotient_replay": true,
+      "partition_groups": 144,
+      "max_original_head_columns_sharing_one_row": 1,
+      "inventory": {
+        "method": "steep",
+        "lattice_index": 60,
+        "basis_coordinate_caps": [
+          9,
+          6
+        ],
+        "largest_observed_coordinates": [
+          2,
+          2
+        ],
+        "planes": 37,
+        "coarse_plane_bound": 2223
+      },
+      "complete_original_cones": null
+    },
+    {
+      "t": 16,
+      "a": 40,
+      "steps": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "polynomial_coefficients": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      ],
+      "characteristic": 2,
+      "full_original_quotient_replay": false,
+      "partition_groups": 35,
+      "max_original_head_columns_sharing_one_row": 4,
+      "inventory": {
+        "method": "unit_short",
+        "lattice_index": 19,
+        "basis_coordinate_caps": [
+          112,
+          112
+        ],
+        "largest_observed_coordinates": [
+          6,
+          5
+        ],
+        "planes": 290,
+        "coarse_plane_bound": 455625
+      },
+      "complete_original_cones": null
+    }
+  ],
+  "common_sampler": [
+    {
+      "characteristic": 2,
+      "polynomial_coefficients": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ],
+      "common_weights": 414,
+      "complete_original_cones": 33
+    },
+    {
+      "characteristic": 3,
+      "polynomial_coefficients": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          1
+        ]
+      ],
+      "common_weights": 414,
+      "complete_original_cones": 21
+    },
+    {
+      "characteristic": 0,
+      "polynomial_coefficients": [
+        [
+          2,
+          -1,
+          3
+        ],
+        [
+          0,
+          1,
+          -2
+        ]
+      ],
+      "common_weights": 414,
+      "complete_original_cones": 23
+    },
+    {
+      "characteristic": 101,
+      "polynomial_coefficients": [
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ],
+      "common_weights": 414,
+      "complete_original_cones": 1
+    }
+  ],
+  "nearby_step_actual_face_guards": [
+    {
+      "t": 3,
+      "a": 9,
+      "nu": 2,
+      "characteristic": 101,
+      "central_operator": "1+q^nu*v+q^(nu+1)*v",
+      "original_columns_crossing_old_parts": 8,
+      "complete_original_cones": 76,
+      "distinct_crosslayer_planes_outside_two_orbit_inventory": 29,
+      "actual_exchange_witness": {
+        "exchange": [
+          [
+            1,
+            8,
+            1
+          ],
+          [
+            0,
+            5,
+            3
+          ]
+        ],
+        "weight": [
+          "3/14",
+          "19/70",
+          "18/35"
+        ],
+        "wall_plane": [
+          1,
+          3,
+          -2
+        ],
+        "old_component_keys": [
+          [
+            "chain",
+            0,
+            3,
+            0
+          ],
+          [
+            "core",
+            1,
+            1
+          ]
+        ],
+        "exchanges_between_distinct_old_components": true
+      }
+    },
+    {
+      "t": 4,
+      "a": 13,
+      "nu": 3,
+      "characteristic": 3,
+      "central_operator": "1+q^nu*v+q^(nu+1)*v",
+      "original_columns_crossing_old_parts": 21,
+      "complete_original_cones": 154,
+      "distinct_crosslayer_planes_outside_two_orbit_inventory": 55,
+      "actual_exchange_witness": {
+        "exchange": [
+          [
+            1,
+            12,
+            1
+          ],
+          [
+            0,
+            8,
+            4
+          ]
+        ],
+        "weight": [
+          "6/23",
+          "45/161",
+          "74/161"
+        ],
+        "wall_plane": [
+          1,
+          4,
+          -3
+        ],
+        "old_component_keys": [
+          [
+            "chain",
+            0,
+            5,
+            0
+          ],
+          [
+            "chain",
+            0,
+            4,
+            0
+          ]
+        ],
+        "exchanges_between_distinct_old_components": true
+      }
+    }
+  ],
+  "pure_cross_arm_remainder_faces": [
+    {
+      "t": 4,
+      "a": 25,
+      "nu": 4,
+      "characteristic": 1009,
+      "M": "q^nu*(1+q)*v",
+      "operator_modes": [
+        "plus",
+        "plus"
+      ],
+      "exchange": [
+        [
+          1,
+          11,
+          1
+        ],
+        [
+          0,
+          7,
+          9
+        ]
+      ],
+      "weight": [
+        "35/48",
+        "23/192",
+        "29/192"
+      ],
+      "primitive_plane": [
+        1,
+        4,
+        -8
+      ],
+      "strictly_cheaper_rank": 87,
+      "each_single_and_pair_increment": 1,
+      "outside_original_known_direction_inventory": true
+    },
+    {
+      "t": 6,
+      "a": 49,
+      "nu": 6,
+      "characteristic": 1009,
+      "M": "q^nu*(1+q)*v",
+      "operator_modes": [
+        "power",
+        "geometric"
+      ],
+      "exchange": [
+        [
+          1,
+          13,
+          5
+        ],
+        [
+          0,
+          7,
+          17
+        ]
+      ],
+      "weight": [
+        "9/16",
+        "25/96",
+        "17/96"
+      ],
+      "primitive_plane": [
+        1,
+        6,
+        -12
+      ],
+      "strictly_cheaper_rank": 208,
+      "each_single_and_pair_increment": 1,
+      "outside_original_known_direction_inventory": true
+    }
+  ],
+  "common_arrangement": {
+    "planes": 54,
+    "integer_weights": 414
+  },
+  "limits": [
+    "Both outer images vanish; arbitrary compatible outer maps can join the cosets and are not covered.",
+    "Central supports must lie on one monomial ray per arm. Two nearby long steps can destroy the lattice index and the unmarked-chain split.",
+    "The common inventory works over all fields; it does not claim the actual fan is independent of coefficients or characteristic.",
+    "Nearby-step guard fixtures have actual coherent cross-component faces outside every comparison plane of the theorem, but establish no asymptotic lower growth.",
+    "Two independently reconstructed full-prefix certificates also give actual pure cross-arm faces outside the original known-direction inventory; they establish no rate of growth.",
+    "The largest fixture checks the original residue matrix without replaying the full commuting-multiplication audit; the other fixtures replay actual quotients.",
+    "Lattice cosets, matroid direct sums and arrangements are classical; exact strongest-current novelty, sharp unrestricted growth, actual polynomial excess and the original final-paper requirements remain unresolved."
+  ],
+  "source_sha256": {
+    "docs/hook_bridge_reduction.md": "a7c7c4643847c8b2ce668a6341fb9b49fa55b17a67ba8bd618f140212acef259",
+    "docs/hook_monomial_orbits.md": "9cad33417938b69d1c2399b359cdefd9b85cd25faa44a101379bfb6fcdfea0ac",
+    "docs/hook_two_orbit_fans.md": "d07de12a4f0753c271766254d583815d8e32d63be298d6e57c86c2d740d7b4a9",
+    "docs/profile_lattice_bound.md": "b4de4bdbc2e01dae50a890bbf89af2581421088fa8db55859e7cbf3b51825a8c",
+    "results/research/hook_paired_chain_checks.json": "f5cd545663cc0ed5debd490ea57609d5635f587709b18d3a8b28548fd24f497c",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_central_prefix_checks.py": "26377696a5b4443f15045e16a91125239dd934baf1d1d5f1400dbe9cb0f09cc8",
+    "scripts/run_hook_coherent_unit_window_checks.py": "4c038a10363b3d472f8a6cd67e906ae62ca2ebe4fd90506725616c72e63f6505",
+    "scripts/run_hook_filtered_annihilator_checks.py": "9ebfcc35b27f75c586a7165282f076f763f20e5eaeeb8c9943a5f251d0347b76",
+    "scripts/run_hook_high_price_partner_checks.py": "e08140cf5c6caf12eda55c2f3d7116851f826e8d78352cde8fb2a261fa0abd31",
+    "scripts/run_hook_monomial_orbit_checks.py": "73d2df85c7b57f274924dafe7e10cad3ac93c91379797f551f5b545d48741b60",
+    "scripts/run_hook_monomial_perturbation_checks.py": "17577d12548240faac5d6de08f743e5624d08930ab0f0ae64f9a25bb9c968632",
+    "scripts/run_hook_prefix_uncertainty_checks.py": "9f40ebf63619254f66e8cd2000b35fc75473cf9debcb16b1ae19780d643f46e9",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hook_transverse_prefix_checks.py": "cb63787ea1e5e6da1823c262901de02ae55ce1abc17b867118a5ea285363c3c0",
+    "scripts/run_hook_transverse_valuation_checks.py": "1db9d884e7dee58efbccafb711257192ee8575a71d5cfd9a8ada10aad8bcaad4",
+    "scripts/run_hook_two_orbit_checks.py": "3bc71e2f3e277ae20a6b4b0fd00c425f73168e658616732d90fcd7064bfc830c",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
