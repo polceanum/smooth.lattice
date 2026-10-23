@@ -1,0 +1,1158 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "command": "python3 -B scripts/run_hook_axis_linear_checks.py",
+  "uniform_result": {
+    "whole_prefix_shift_inequality": "alpha_(i+1)(theta) <= alpha_i(theta)+1; absent births form a suffix",
+    "compiled_profile_query": "O(t+log A) rational/integer operations with no field elimination",
+    "patch_normals": "at most 4*t+4 integer inequalities, with additional rational polygon-construction cost",
+    "compilation": "O(A^3+A^2*t^2) field operations and O(A^2) field storage, using at most A-t rank-one pure basis exchanges per factor.",
+    "scope": "Actual zero-outer axis hooks over all fields. The arbitrary replicated matrix specialization is not asserted."
+  },
+  "counts": {
+    "incremental_factor_compilations": 120,
+    "rank_one_pure_basis_exchanges": 488,
+    "entire_incremental_factor_tables_equal_fresh_elimination": 96,
+    "independent_whole_prefix_birth_values": 280,
+    "whole_interval_shift_gain_inequalities": 1405,
+    "complete_shift_factor_fixtures": 80,
+    "arbitrary_replicated_incremental_tables_equal_fresh_elimination": 24,
+    "linear_profile_queries": 3639,
+    "maximum_linear_loop_steps": 32,
+    "maximum_patch_normal_count": 18,
+    "whole_linear_patches_inside_quadratic_patches": 952,
+    "complete_linear_refinement_covers": 8,
+    "exact_entire_profile_fan_equalities_with_prior_report": 8,
+    "fresh_linear_vs_quadratic_profile_queries": 239
+  },
+  "whole_interval_shift_controls": [
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "nonunit",
+      "complete_intervals": 4,
+      "rank_one_exchanges": 1,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "dense",
+      "complete_intervals": 6,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "sparse",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "nonunit",
+      "complete_intervals": 9,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "dense",
+      "complete_intervals": 9,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "sparse",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "nonunit",
+      "complete_intervals": 8,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "dense",
+      "complete_intervals": 16,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "sparse",
+      "complete_intervals": 10,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 0,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 0,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 0,
+      "mode": "nonunit",
+      "complete_intervals": 21,
+      "rank_one_exchanges": 8,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 0,
+      "mode": "dense",
+      "complete_intervals": 25,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 0,
+      "mode": "sparse",
+      "complete_intervals": 14,
+      "rank_one_exchanges": 9,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "nonunit",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "dense",
+      "complete_intervals": 3,
+      "rank_one_exchanges": 1,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "sparse",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "nonunit",
+      "complete_intervals": 3,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "dense",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "sparse",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "nonunit",
+      "complete_intervals": 7,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "dense",
+      "complete_intervals": 6,
+      "rank_one_exchanges": 5,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "sparse",
+      "complete_intervals": 4,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 2,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 2,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 2,
+      "mode": "nonunit",
+      "complete_intervals": 13,
+      "rank_one_exchanges": 8,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 2,
+      "mode": "dense",
+      "complete_intervals": 13,
+      "rank_one_exchanges": 8,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 2,
+      "mode": "sparse",
+      "complete_intervals": 7,
+      "rank_one_exchanges": 7,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "nonunit",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "dense",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "sparse",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "nonunit",
+      "complete_intervals": 5,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "dense",
+      "complete_intervals": 6,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "sparse",
+      "complete_intervals": 5,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "nonunit",
+      "complete_intervals": 7,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "dense",
+      "complete_intervals": 7,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "sparse",
+      "complete_intervals": 8,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 3,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 3,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 3,
+      "mode": "nonunit",
+      "complete_intervals": 15,
+      "rank_one_exchanges": 8,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 3,
+      "mode": "dense",
+      "complete_intervals": 21,
+      "rank_one_exchanges": 9,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 3,
+      "mode": "sparse",
+      "complete_intervals": 14,
+      "rank_one_exchanges": 9,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "nonunit",
+      "complete_intervals": 4,
+      "rank_one_exchanges": 1,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "dense",
+      "complete_intervals": 6,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 4,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "sparse",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 2,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "nonunit",
+      "complete_intervals": 9,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "dense",
+      "complete_intervals": 11,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 7,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "sparse",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "nonunit",
+      "complete_intervals": 12,
+      "rank_one_exchanges": 4,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "dense",
+      "complete_intervals": 15,
+      "rank_one_exchanges": 6,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 10,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "sparse",
+      "complete_intervals": 8,
+      "rank_one_exchanges": 3,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 101,
+      "mode": "zero",
+      "complete_intervals": 1,
+      "rank_one_exchanges": 0,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 101,
+      "mode": "unit",
+      "complete_intervals": 2,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 101,
+      "mode": "nonunit",
+      "complete_intervals": 21,
+      "rank_one_exchanges": 8,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 101,
+      "mode": "dense",
+      "complete_intervals": 25,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    },
+    {
+      "A": 15,
+      "t": 5,
+      "characteristic": 101,
+      "mode": "sparse",
+      "complete_intervals": 24,
+      "rank_one_exchanges": 10,
+      "upper_and_lower_labels_never_reenter": true
+    }
+  ],
+  "axis_fans": [
+    {
+      "t": 2,
+      "a": 8,
+      "A": 6,
+      "length": 56,
+      "characteristic": 101,
+      "linear_refinement_patches": 60,
+      "prior_refinement_patches": 55,
+      "actual_initial_ideal_cones": 33,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "3b6f35fa953880f99adf34ddd9245774120847b3c0adc366ff42f6ef027229ae",
+      "independent_original_fan_replay": {
+        "complete_original_cones": 33,
+        "whole_normal_cones_equal": true
+      }
+    },
+    {
+      "t": 3,
+      "a": 10,
+      "A": 7,
+      "length": 102,
+      "characteristic": 2,
+      "linear_refinement_patches": 22,
+      "prior_refinement_patches": 17,
+      "actual_initial_ideal_cones": 11,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "5e9d2429a29353617747ca1f2905638e3d9d0132f8c36a59c8bef5cb48c14c61",
+      "independent_original_fan_replay": {
+        "complete_original_cones": 11,
+        "whole_normal_cones_equal": true
+      }
+    },
+    {
+      "t": 2,
+      "a": 9,
+      "A": 7,
+      "length": 64,
+      "characteristic": 101,
+      "linear_refinement_patches": 5,
+      "prior_refinement_patches": 5,
+      "actual_initial_ideal_cones": 4,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "7bd73abc3de72f052b7d6562ecc9c328d6dac6fdbb35e5b4c112ce63b8672088",
+      "independent_original_fan_replay": null
+    },
+    {
+      "t": 3,
+      "a": 12,
+      "A": 9,
+      "length": 126,
+      "characteristic": 0,
+      "linear_refinement_patches": 5,
+      "prior_refinement_patches": 5,
+      "actual_initial_ideal_cones": 5,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "73fdefee50e7be79b2cafff2df4f3cd6d354f495e9e03bd16929915f9dff530f",
+      "independent_original_fan_replay": null
+    },
+    {
+      "t": 4,
+      "a": 14,
+      "A": 10,
+      "length": 192,
+      "characteristic": 1009,
+      "linear_refinement_patches": 51,
+      "prior_refinement_patches": 41,
+      "actual_initial_ideal_cones": 33,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "8a6d0784f3bcb8c71fb09d4e8b6d9e33109e9d78f74219a3937c2947f227073d",
+      "independent_original_fan_replay": null
+    },
+    {
+      "t": 4,
+      "a": 17,
+      "A": 13,
+      "length": 240,
+      "characteristic": 1009,
+      "linear_refinement_patches": 299,
+      "prior_refinement_patches": 289,
+      "actual_initial_ideal_cones": 182,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "d43eb48ee003b582c342a731e01f12d1c34f6cac2d1b2de0815a036eed6bc589",
+      "independent_original_fan_replay": null
+    },
+    {
+      "t": 6,
+      "a": 26,
+      "A": 20,
+      "length": 552,
+      "characteristic": 1009,
+      "linear_refinement_patches": 152,
+      "prior_refinement_patches": 152,
+      "actual_initial_ideal_cones": 78,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "821012943dafd2d85726ada9451537fca55e27c4721c1e6dde4c4dcc0634b776",
+      "independent_original_fan_replay": null
+    },
+    {
+      "t": 8,
+      "a": 40,
+      "A": 32,
+      "length": 1152,
+      "characteristic": 1009,
+      "linear_refinement_patches": 358,
+      "prior_refinement_patches": 358,
+      "actual_initial_ideal_cones": 187,
+      "exact_total_area": "1",
+      "normal_cones_sha256": "065e48954cabef6f75f327aeafa398a4d30761f288011dec1cd3d3050767c7a0",
+      "independent_original_fan_replay": null
+    }
+  ],
+  "arbitrary_replicated_incremental_controls": [
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 3,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 0,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 5,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 0,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 7,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 0,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 3,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 2,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 4,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 2,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 7,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 2,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 3,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 3,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 5,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 3,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 7,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 3,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 3,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 5,
+      "t": 2,
+      "characteristic": 101,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 5,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 8,
+      "t": 3,
+      "characteristic": 101,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "dense",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 7,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    },
+    {
+      "A": 11,
+      "t": 4,
+      "characteristic": 101,
+      "mode": "dependent",
+      "upper_basis": "nonidentity triangular basis",
+      "head_in_lower_span": true,
+      "rank_one_exchanges": 1,
+      "scope": "Arbitrary replicated factor. No algebra realization claimed."
+    }
+  ],
+  "arbitrary_replicated_scope_counterexample": {
+    "A": 4,
+    "t": 2,
+    "characteristic": 101,
+    "theta": "1/2",
+    "births": [
+      "1/2",
+      "7/2"
+    ],
+    "head_upper_indices": [
+      0,
+      3
+    ],
+    "pure_lowers": "all zero",
+    "scope": "An arbitrary replicated factor fails the axis shift order. No algebra realization claimed."
+  },
+  "limits": [
+    "No new asymptotic fan-count exponent or infinite polynomial lower excess.",
+    "Finite exact full fans are compared with the earlier report; two original quotient fans are freshly replayed.",
+    "Sign inequalities can introduce additional refinement patches; the actual full profile fans agree exactly.",
+    "No optimal bit-complexity, basis-output or smooth-number unranking speed claim.",
+    "The unrestricted extremal goal, strongest-current novelty and final paper remain incomplete."
+  ],
+  "source_sha256": {
+    "docs/hook_axis_birth_curves.md": "d3166f48b98a23987b2e55a12617ff5aa24576501a568e7d813f1b772893da33",
+    "docs/hook_axis_fan_compilation.md": "4a533951bece4b267a473fd464562d4d1f5848f02cc5fd7040813de1b1dd7b45",
+    "docs/hook_axis_linear_oracle.md": "7be44259c19c2e79b753e5df88aee60ef9563e6792e27eea0abfd422ab8ff35a",
+    "docs/oracle_fan_enumeration.md": "f3323de30299bcbb0b4755600266aa16d74128322b517492fc75ebbe370e0e15",
+    "results/research/hook_axis_birth_checks.json": "c9ee7875254d86949e8a6f578444d03dd2646e3ab0a385b9dbb046835e513965",
+    "results/research/hook_axis_compilation_checks.json": "b2e2926e38d2ae7d6fb95fc949e6e74d602d73ca02bea95b953e5b613a479b68",
+    "scripts/run_algebraic_incidence_controls.py": "93e6f0e5d147da43cdfacc16e4419703c59993c10dc03199ef6385df4d420eeb",
+    "scripts/run_extremal_initial_ideals_checks.py": "39f27b3e388433e1e3fa57af5e57c18d3444fca60585b164c734cc942ab6b566",
+    "scripts/run_generic_hook_checks.py": "3ee4bbb72f481b5543bba276fca3e4ee229b9d0aa9b6c9d79e3bcad369d9c2f8",
+    "scripts/run_higher_interaction_checks.py": "cdc31d1b582e71c4536056429bf7eabeb2fcb312f313713135a2eaee68578916",
+    "scripts/run_higher_seed_checks.py": "92f0c67e86e3be54c71cbe6efac168c767c9768bb8058b6dc36d24b91acac926",
+    "scripts/run_hook_axis_birth_checks.py": "706638a5c886f4b3f4f1371128ac9ceb6f07784943cafb8e76ad755e6396f508",
+    "scripts/run_hook_axis_compilation_checks.py": "608bea2c12913268cc987b64f1a5f4bceb6a3e05c70340b0f847f0e7fe6f56a6",
+    "scripts/run_hook_axis_linear_checks.py": "83ef687abb19e8ba4b7b188d7d9242994b5bed5cda80582c8249a27e5959ca7f",
+    "scripts/run_hook_bridge_checks.py": "b4b8a52257e8e21cce035f75e356d583b4baacba585d3f47ecc51a57dd0805ec",
+    "scripts/run_hook_rank_departure_checks.py": "43c5da1ef0737781e428d256e840f526bc175e7d66bb1cefb51a97b2674a7ab1",
+    "scripts/run_hypersurface_truncation_checks.py": "700073c01784db06a953d351c500e0d66b0019c1152fe4b127cbf50f35cbcd7e",
+    "scripts/run_initial_cone_height_checks.py": "f804aff89da53a6139aed7cacc9fd802dee8fd8529ee48a0d240dd9740df3dab",
+    "scripts/run_interleaving_research.py": "406b7d3bbe1742fe26d25d59b1a8c310641f5a50139dc3f29e0f8b6f0f39f2d1",
+    "scripts/run_liaison_fan_checks.py": "59129e88d900f283ed245f7762f3f75f9b498442fe10f7f0b2e2757493359539",
+    "scripts/run_oracle_enumeration_checks.py": "139af7656f8dc4083fc463a0bb27354ee53b23e85bc3232b958236b15ee45ec2",
+    "scripts/run_planar_dyadic_bound_checks.py": "27642dbe7cf5c21e0eacb671b644bd00b97e758422d341cffa82c16df0b224bc",
+    "scripts/run_primitive_wall_checks.py": "ce4bdb6316b3acbfc15625b8f67dfadd69c95d691c81da2c47cda6538c867cdb",
+    "scripts/run_projection_tag_checks.py": "c003724cab6740a5bafc51e03b0f17f779eff80a463bdf92dae134d53617ccff",
+    "scripts/run_signed_face_checks.py": "8367cf40b049331649f6f3ed799e43982b14a1d40cfb620791249d2c63375867",
+    "scripts/run_socle_stability_checks.py": "81e4476100f0be5457fcf7019186415d230cceac4096202b2844dce645e83f52",
+    "scripts/run_square_zero_extension_checks.py": "c6e493b604506bb2ffd0da87a8517a72b7c2691c95daf659b6850ca42ee199df",
+    "scripts/run_structural_complexity_checks.py": "c278b21675fe6ba6be1a91bdc8aca502717f57188b55d65bac9acf2461edd42f",
+    "scripts/run_wall_coexistence_checks.py": "12efc209c9a0daacb8e50eebe65902ca019a78fb78098ecc3e79ecf585cae282"
+  }
+}
